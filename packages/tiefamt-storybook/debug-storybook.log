@@ -1,0 +1,24 @@
+[11:45:50.705] [INFO] storybook v10.2.19
+[11:45:51.873] [DEBUG] Getting package.json info for /home/lena/Documents/software/tiefamt/packages/tiefamt-storybook/package.json...
+[11:45:52.806] [INFO] Starting...
+[11:45:53.253] [ERROR] [38;2;241;97;97mSB_CORE-SERVER_0004 (NoMatchingExportError): There was an exports mismatch error when trying to build Storybook.
+Please check whether the versions of your Storybook packages match whenever possible, as this might be the cause.
+
+Problematic example:
+{ "@storybook/react": "7.5.3", "@storybook/react-vite": "7.4.5", "storybook": "7.3.0" }
+
+Correct example:
+{ "@storybook/react": "7.5.3", "@storybook/react-vite": "7.5.3", "storybook": "7.5.3" }
+
+Please run `npx storybook doctor` for guidance on how to fix this issue.
+
+More info: 
+[39m
+    at buildOrThrow (file:///home/lena/Documents/software/tiefamt/node_modules/.bun/storybook@10.2.19+7d74ec26920ad4c8/node_modules/storybook/dist/core-server/index.js:4511:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async buildDevStandalone (file:///home/lena/Documents/software/tiefamt/node_modules/.bun/storybook@10.2.19+7d74ec26920ad4c8/node_modules/storybook/dist/core-server/index.js:7710:41)
+    at async withTelemetry (file:///home/lena/Documents/software/tiefamt/node_modules/.bun/storybook@10.2.19+7d74ec26920ad4c8/node_modules/storybook/dist/_node-chunks/chunk-FJZ625UU.js:218:12)
+    at async dev (file:///home/lena/Documents/software/tiefamt/node_modules/.bun/storybook@10.2.19+7d74ec26920ad4c8/node_modules/storybook/dist/bin/core.js:2734:3)
+    at async _Command.<anonymous> (file:///home/lena/Documents/software/tiefamt/node_modules/.bun/storybook@10.2.19+7d74ec26920ad4c8/node_modules/storybook/dist/bin/core.js:2804:92)
+[11:45:53.259] [WARN] Broken build, fix the error above.
+You may need to refresh the browser.

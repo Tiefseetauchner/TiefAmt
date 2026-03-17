@@ -1,0 +1,14 @@
+{
+  "name": "tiefamt-monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "cd packages/tiefamt && bun run build",
+    "dev": "cd packages/tiefamt && bun run build --watch",
+    "storybook": "cd packages/tiefamt-storybook && bun storybook",
+    "typecheck": "tsc --noEmit -p packages/tiefamt/tsconfig.json",
+    "lint": "bunx eslint packages/tiefamt/src"
+  }
+}

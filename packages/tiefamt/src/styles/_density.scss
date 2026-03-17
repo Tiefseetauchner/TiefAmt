@@ -1,0 +1,21 @@
+:root,
+[data-gov-density="default"] {
+  --gov-cell-pad-y:  0.5rem;
+  --gov-cell-pad-x:  0.75rem;
+  --gov-row-gap:     0.75rem;
+  --gov-section-gap: 1.5rem;
+}
+
+[data-gov-density="comfortable"] {
+  --gov-cell-pad-y:  0.75rem;
+  --gov-cell-pad-x:  1rem;
+  --gov-row-gap:     1rem;
+  --gov-section-gap: 2rem;
+}
+
+[data-gov-density="compact"] {
+  --gov-cell-pad-y:  0.25rem;
+  --gov-cell-pad-x:  0.5rem;
+  --gov-row-gap:     0.5rem;
+  --gov-section-gap: 1rem;
+}

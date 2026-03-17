@@ -1,0 +1,27 @@
+{
+  "name": "tiefamt-storybook",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "tiefamt": "workspace:*"
+  },
+  "devDependencies": {
+    "@storybook/react": "^10.2.19",
+    "@storybook/react-vite": "^10.2.19",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@vitejs/plugin-react": "^6.0.1",
+    "bootstrap": "^5.3.3",
+    "react": "^19.2.4",
+    "react-bootstrap": "^2.10.6",
+    "react-dom": "^19.2.4",
+    "sass": "^1.86.1",
+    "storybook": "^10.2.19",
+    "typescript": "latest",
+    "vite": "^8.0.0"
+  }
+}
