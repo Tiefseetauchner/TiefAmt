@@ -17,7 +17,23 @@ export default meta
 type Story = StoryObj<typeof GovBanner>
 
 export const Default: Story = {
-  args: { forceShow: true, dismissible: true },
+  args: {
+    forceShow: true,
+    dismissible: true,
+    children: 'Dies ist eine offizielle Website einer österreichischen Behörde.',
+  },
+}
+
+export const CustomContent: Story = {
+  args: {
+    forceShow: true,
+    dismissible: true,
+    children: (
+      <>
+        <strong>Offizielle Website</strong> — Verwenden Sie nur sichere Verbindungen (https://).
+      </>
+    ),
+  },
 }
 
 export const NonDismissible: Story = {

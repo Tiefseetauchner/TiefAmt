@@ -7,7 +7,10 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./styles": "./dist/govamt.css"
+    "./styles":                  "./dist/styles/govamt.css",
+    "./styles/presets/austria":  "./dist/styles/presets/austria.css",
+    "./styles/presets/eu":       "./dist/styles/presets/eu.css",
+    "./styles/presets/neutral":  "./dist/styles/presets/neutral.css"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",

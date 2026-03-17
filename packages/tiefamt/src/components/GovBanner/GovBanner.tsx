@@ -3,11 +3,9 @@ import { Alert, Container } from 'react-bootstrap';
 import { gcn } from '../../utils/govClassNames';
 import type { GovBannerProps } from './GovBanner.types';
 
-const DEFAULT_MESSAGE =
-  'Dies ist eine offizielle Website einer österreichischen Behörde.';
 
 export function GovBanner({
-  message = DEFAULT_MESSAGE,
+  children,
   dismissible = true,
   forceShow = false,
   className,
@@ -16,7 +14,6 @@ export function GovBanner({
 }: GovBannerProps) {
   const [show, setShow] = useState(true);
 
-  // Hidden in development unless forced
   if (!forceShow) return null;
   if (!show) return null;
 
@@ -28,10 +25,7 @@ export function GovBanner({
           className="gov-banner__inner border-0 bg-transparent m-0 p-0 d-flex align-items-center gap-2"
           {...bsProps}
         >
-          <span className="gov-banner__icon" aria-hidden="true">
-            🏛
-          </span>
-          <span className="gov-banner__text">{message}</span>
+          {children}
           {dismissible && (
             <button
               type="button"

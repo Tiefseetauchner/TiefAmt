@@ -1,14 +1,28 @@
-// Provider & context
+// ── Provider & context ────────────────────────────────────────────────────────
 export { GovProvider, GovContext, useGovTheme } from './provider/GovProvider'
 export type { GovConfig, GovDensity } from './provider/GovProvider'
 
-// Hooks
-export { useGovTheme as useGovThemeHook } from './hooks/useGovTheme'
+// ── Hooks ─────────────────────────────────────────────────────────────────────
+export { useGovSearch } from './hooks/useGovSearch'
+export type { UseGovSearchOptions, UseGovSearchReturn } from './hooks/useGovSearch'
 
-// Utils
+export { useGovDocumentDrawer } from './hooks/useGovDocumentDrawer'
+export type { UseGovDocumentDrawerReturn } from './hooks/useGovDocumentDrawer'
+
+// ── Utils ─────────────────────────────────────────────────────────────────────
 export { gcn } from './utils/govClassNames'
 
-// Components
+// ── Workflow types (shared across DMS components) ─────────────────────────────
+export { WORKFLOW_TRANSITIONS } from './types/workflow'
+export type {
+  GovDocumentStatus,
+  GovWorkflowAction,
+  WorkflowStep,
+  GovDocumentMeta,
+  GovDocumentDrawerProps,
+} from './types/workflow'
+
+// ── Foundation components ─────────────────────────────────────────────────────
 export { GovPage } from './components/GovPage'
 export type { GovPageProps } from './components/GovPage'
 
@@ -38,3 +52,38 @@ export type { GovNavProps, GovNavSection, GovNavItem } from './components/GovNav
 
 export { GovSidebar } from './components/GovSidebar'
 export type { GovSidebarProps } from './components/GovSidebar'
+
+// ── DMS — workflow & state ────────────────────────────────────────────────────
+export { GovStatusBadge } from './components/GovStatusBadge'
+export type { GovStatusBadgeProps } from './components/GovStatusBadge'
+
+export { GovWorkflowTracker } from './components/GovWorkflowTracker'
+export type { GovWorkflowTrackerProps } from './components/GovWorkflowTracker'
+
+export { GovActionBar } from './components/GovActionBar'
+export type { GovActionBarProps } from './components/GovActionBar'
+
+// ── DMS — search & filtering ──────────────────────────────────────────────────
+export { GovSearchBar } from './components/GovSearchBar'
+export type { GovSearchBarProps } from './components/GovSearchBar'
+
+export { GovFilterChip } from './components/GovFilterChip'
+export type { GovFilterChipProps } from './components/GovFilterChip'
+
+export { GovFilterPanel } from './components/GovFilterPanel'
+export type { GovFilterPanelProps, FilterFieldSchema } from './components/GovFilterPanel'
+
+export { GovDataTable } from './components/GovDataTable'
+export type { GovDataTableProps, GovColumnDef } from './components/GovDataTable'
+
+// ── DMS — document preview ────────────────────────────────────────────────────
+export { GovPageThumbnail } from './components/GovPageThumbnail'
+export type { GovPageThumbnailProps } from './components/GovPageThumbnail'
+
+export { GovDocumentCard } from './components/GovDocumentCard'
+export type { GovDocumentCardProps } from './components/GovDocumentCard'
+
+export { GovPdfViewer } from './components/GovPdfViewer'
+export type { GovPdfViewerProps, GovPdfViewerMode } from './components/GovPdfViewer'
+
+export { GovDocumentDrawer } from './components/GovDocumentDrawer'
