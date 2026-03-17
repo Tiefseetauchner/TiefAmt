@@ -1,97 +1,60 @@
-// EU preset — layers on top of @tiefamt/core/styles/govamt
-// Import order: govamt first, then this file.
-//
-// Pantone 286 C blue primary, Pantone 116 C gold accent (decorative only).
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/mixins";
 
+// Preset: European Union
+// Standalone import. Single entry point for Bootstrap + TiefAmt base + EU identity.
+// Pantone 286 C blue primary, Pantone 116 C gold as decorative CSS custom property only.
+
+// Primary — Pantone 286 C (EU flag blue, exact)
 $primary:       #003399;
 $primary-dark:  #002277;
 $primary-light: #C5D0F0;
-$eu-gold:       #FFCC00;
-$body-bg:       #FFFFFF;
-$body-color:    #212529;
-$border-color:  #CED4DA;
-$success:       #1E7E34;
-$warning:       #D39E00;
-$danger:        #BD2130;
-$info:          #117A8B;
 
-// ─── Root tokens ────────────────────────────────────────────────────────────
+// EU gold — Pantone 116 C
+// NOT assigned to $warning — gold is decorative/identity, not a semantic state
+// Exposed as a CSS custom property after the import (see bottom of file)
+$eu-gold: #FFCC00;
+
+// Neutrals — cold, no warmth
+$secondary:    #6C757D;
+$body-bg:      #FFFFFF;   // EU documents use pure white
+$body-color:   #212529;
+$border-color: #CED4DA;
+
+// Functional
+$success: #1E7E34;
+$warning: #D39E00;   // amber, NOT the EU gold
+$danger:  #BD2130;
+$info:    #117A8B;
+
+// Typography — EU officially uses Arial; Source Sans 3 is the acceptable alternative.
+// No serif — EU documents are sans throughout.
+$font-family-base:     "Source Sans 3", "Arial", "Helvetica Neue", sans-serif;
+$font-family-heading:  "Source Sans 3", "Arial", "Helvetica Neue", sans-serif;
+$font-size-base:       0.9375rem;
+$line-height-base:     1.55;
+$headings-font-weight: 700;   // EU headings are heavier than Austrian
+
+// Geometry
+$border-radius:    2px;
+$border-radius-sm: 2px;
+$border-radius-lg: 4px;
+
+// Links — blue, underlined
+$link-color:       $primary;
+$link-hover-color: $primary-dark;
+$link-decoration:  underline;
+
+// Tables
+$table-border-color: #CED4DA;
+$table-striped-bg:   rgba(0, 0, 0, 0.025);
+$table-hover-bg:     rgba(#003399, 0.04);
+
+// 'common' resolves via loadPaths in tsup config → packages/core/src/styles
+@import 'common';
+
+// Expose EU gold as a custom property — available to components for
+// decorative use (star rules, header accents) without polluting Bootstrap semantics
 :root {
-  // Bootstrap semantic colors
-  --bs-primary:     #{$primary};
-  --bs-primary-rgb: 0, 51, 153;
-
-  // Body
-  --bs-body-bg:      #{$body-bg};
-  --bs-body-color:   #{$body-color};
-  --bs-border-color: #{$border-color};
-
-  // Typography — EU uses Arial / Source Sans 3, heavy headings
-  --bs-body-font-family: "Source Sans 3", "Arial", "Helvetica Neue", sans-serif;
-  --bs-body-line-height: 1.55;
-
-  // Links
-  --bs-link-color:           #{$primary};
-  --bs-link-color-rgb:       0, 51, 153;
-  --bs-link-hover-color:     #{$primary-dark};
-  --bs-link-hover-color-rgb: 0, 34, 119;
-  --bs-link-decoration:      underline;
-
-  // Functional
-  --bs-success-rgb: 30, 126, 52;
-  --bs-warning-rgb: 211, 158, 0;
-  --bs-danger-rgb:  189, 33, 48;
-  --bs-info-rgb:    17, 122, 139;
-
-  // TiefAmt tokens
-  --gov-primary:       #{$primary};
-  --gov-primary-dark:  #{$primary-dark};
-  --gov-primary-light: #{$primary-light};
-
-  // EU gold — decorative only (star motifs, header accents)
   --gov-eu-gold: #{$eu-gold};
 }
-
-// ─── Bootstrap component overrides ──────────────────────────────────────────
-.btn-primary {
-  --bs-btn-bg:             #{$primary};
-  --bs-btn-border-color:   #{$primary};
-  --bs-btn-hover-bg:       #{$primary-dark};
-  --bs-btn-hover-border-color: #{$primary-dark};
-  --bs-btn-active-bg:      #{$primary-dark};
-  --bs-btn-active-border-color: #{$primary-dark};
-  --bs-btn-disabled-bg:    #{$primary};
-  --bs-btn-disabled-border-color: #{$primary};
-}
-
-.btn-outline-primary {
-  --bs-btn-color:           #{$primary};
-  --bs-btn-border-color:    #{$primary};
-  --bs-btn-hover-bg:        #{$primary};
-  --bs-btn-hover-border-color: #{$primary};
-  --bs-btn-active-bg:       #{$primary};
-  --bs-btn-active-border-color: #{$primary};
-}
-
-.bg-primary        { background-color: #{$primary} !important; }
-.text-primary      { color: #{$primary} !important; }
-.border-primary    { border-color: #{$primary} !important; }
-
-.badge.bg-primary,
-.badge.text-bg-primary {
-  --bs-badge-color: #fff;
-  background-color: #{$primary} !important;
-}
-
-.alert-primary {
-  --bs-alert-bg:           #{$primary-light};
-  --bs-alert-border-color: #{$primary};
-  --bs-alert-color:        #{$primary-dark};
-}
-
-.nav-link:hover,
-.nav-link:focus    { color: #{$primary}; }
-.nav-link.active   { color: #{$primary}; }
-
-a { color: #{$primary}; }
-a:hover { color: #{$primary-dark}; }

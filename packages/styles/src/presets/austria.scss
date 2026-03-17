@@ -1,99 +1,52 @@
-// Austria preset — layers on top of @tiefamt/core/styles/govamt
-// Import order: govamt first, then this file.
-//
-// Pantone 186 C red primary, warm off-white bg, transitional serif.
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/mixins";
 
-$primary:       #CE1126;
-$primary-dark:  #A50E1E;
-$primary-light: #F2C4CB;
-$body-bg:       #F7F5F0;
-$body-color:    #1C1C1B;
-$border-color:  #C8C4BC;
-$success:       #2D6A2D;
-$warning:       #C45C00;
-$danger:        #8B0000;
-$info:          #1A4A7A;
+// Preset: Austria — Republik Österreich
+// Standalone import. Single entry point for Bootstrap + TiefAmt base + Austrian identity.
+// Pantone 186 C red primary, warm serif typography, off-white background.
 
-// ─── Root tokens ────────────────────────────────────────────────────────────
-:root {
-  // Bootstrap semantic colors
-  --bs-primary:          #{$primary};
-  --bs-primary-rgb:      206, 17, 38;
+// Primary — Pantone 186 C (Austrian flag red, exact)
+$primary:          #CE1126;
+$primary-dark:     #A50E1E;   // hover / active states
+$primary-light:    #F2C4CB;   // tinted backgrounds, focus rings
 
-  // Body
-  --bs-body-bg:          #{$body-bg};
-  --bs-body-color:       #{$body-color};
-  --bs-border-color:     #{$border-color};
+// Neutrals — warm-shifted, never pure black or white
+$secondary:        #6B6B69;
+$body-bg:          #F7F5F0;   // warm cream, not white
+$body-color:       #1C1C1B;   // warm near-black
+$border-color:     #C8C4BC;
 
-  // Typography — transitional serif
-  --bs-body-font-family: "Source Serif 4", "Georgia", serif;
-  --bs-body-line-height: 1.6;
+// Functional — warm-shifted to avoid clashing with the red primary
+$success:          #2D6A2D;
+$warning:          #C45C00;
+$danger:           #8B0000;   // distinct from primary — darker, less saturated
+$info:             #1A4A7A;
 
-  // Links
-  --bs-link-color:            #{$primary};
-  --bs-link-color-rgb:        206, 17, 38;
-  --bs-link-hover-color:      #{$primary-dark};
-  --bs-link-hover-color-rgb:  160, 14, 30;
-  --bs-link-decoration:       underline;
+// Typography — transitional serif; federal Austrian comms use serif body text
+$font-family-base:     "Source Serif 4", "Georgia", serif;
+$font-family-heading:  "Source Serif 4", "Georgia", serif;
+$font-size-base:       0.9375rem;
+$line-height-base:     1.6;
+$headings-font-weight: 600;
 
-  // Functional
-  --bs-success-rgb: 45, 106, 45;
-  --bs-warning-rgb: 196, 92, 0;
-  --bs-danger-rgb:  139, 0, 0;
-  --bs-info-rgb:    26, 74, 122;
+// Geometry — same as base (flat, boxy)
+$border-radius:    2px;
+$border-radius-sm: 2px;
+$border-radius-lg: 4px;
 
-  // TiefAmt tokens
-  --gov-primary:       #{$primary};
-  --gov-primary-dark:  #{$primary-dark};
-  --gov-primary-light: #{$primary-light};
-}
+// Links — primary red, underlined (accessibility, formal documents)
+$link-color:       $primary;
+$link-hover-color: $primary-dark;
+$link-decoration:  underline;
 
-// ─── Bootstrap component overrides ──────────────────────────────────────────
-// Bootstrap 5 compiles component colors from $primary at build time.
-// Re-wire via per-component CSS vars so the preset doesn't need a full recompile.
+// Tables — slightly warmer borders
+$table-border-color: #C8C4BC;
+$table-striped-bg:   rgba(0, 0, 0, 0.02);
+$table-hover-bg:     rgba(#CE1126, 0.04);
 
-.btn-primary {
-  --bs-btn-bg:             #{$primary};
-  --bs-btn-border-color:   #{$primary};
-  --bs-btn-hover-bg:       #{$primary-dark};
-  --bs-btn-hover-border-color: #{$primary-dark};
-  --bs-btn-active-bg:      #{$primary-dark};
-  --bs-btn-active-border-color: #{$primary-dark};
-  --bs-btn-disabled-bg:    #{$primary};
-  --bs-btn-disabled-border-color: #{$primary};
-}
+// Cards
+$card-border-color: #C8C4BC;
+$card-bg:           #FDFAF6;   // slightly warmer than body-bg for layering
 
-.btn-outline-primary {
-  --bs-btn-color:           #{$primary};
-  --bs-btn-border-color:    #{$primary};
-  --bs-btn-hover-bg:        #{$primary};
-  --bs-btn-hover-border-color: #{$primary};
-  --bs-btn-active-bg:       #{$primary};
-  --bs-btn-active-border-color: #{$primary};
-}
-
-.bg-primary        { background-color: #{$primary} !important; }
-.text-primary      { color: #{$primary} !important; }
-.border-primary    { border-color: #{$primary} !important; }
-
-.badge.bg-primary,
-.badge.text-bg-primary {
-  --bs-badge-color: #fff;
-  background-color: #{$primary} !important;
-}
-
-.alert-primary {
-  --bs-alert-bg:           #{$primary-light};
-  --bs-alert-border-color: #{$primary};
-  --bs-alert-color:        #{$primary-dark};
-}
-
-.nav-link:hover,
-.nav-link:focus    { color: #{$primary}; }
-.nav-link.active   { color: #{$primary}; }
-
-.navbar-light .navbar-brand,
-.navbar-light .navbar-nav .nav-link.active { color: #{$primary}; }
-
-a { color: #{$primary}; }
-a:hover { color: #{$primary-dark}; }
+// 'common' resolves via loadPaths in tsup config → packages/core/src/styles
+@import 'common';
