@@ -1,7 +1,8 @@
 # TiefAmt — project blueprint
 
 TiefAmt is a React UI component library providing a government/bureaucratic aesthetic
-(EU/Austrian style) built on top of React Bootstrap. Published as an npm package.
+(EU/Austrian style) built on top of React Bootstrap. Published as a scoped npm monorepo
+under the `@tiefamt` org.
 
 ---
 
@@ -25,7 +26,7 @@ tiefamt/
 ├── package.json               ← workspace root (bun workspaces)
 ├── bunfig.toml
 ├── packages/
-│   ├── tiefamt/               ← the published npm package
+│   ├── core/                  ← @tiefamt/core — the published component package
 │   │   ├── package.json
 │   │   ├── tsconfig.json
 │   │   ├── tsup.config.ts
@@ -62,15 +63,20 @@ tiefamt/
 │   │   │   ├── utils/
 │   │   │   │   └── govClassNames.ts
 │   │   │   └── styles/
-│   │   │       ├── govamt.scss        ← main SCSS entry point
+│   │   │       ├── govamt.scss        ← main SCSS entry point (base styles, no preset)
 │   │   │       ├── _variables.scss    ← Bootstrap variable overrides
 │   │   │       ├── _typography.scss
 │   │   │       ├── _density.scss      ← CSS custom property tokens
-│   │   │       ├── _components.scss   ← component-level overrides
-│   │   │       └── presets/
-│   │   │           ├── austria.scss   ← Republik Österreich (Pantone 186 C)
-│   │   │           ├── eu.scss        ← European Union (Pantone 286 C + 116 C)
-│   │   │           └── neutral.scss   ← generic government, no national identity
+│   │   │       └── _components.scss   ← component-level overrides
+│   │   └── dist/              ← gitignored, tsup output
+│   ├── styles/                ← @tiefamt/styles — preset CSS, published separately
+│   │   ├── package.json
+│   │   ├── tsup.config.ts
+│   │   ├── src/
+│   │   │   └── presets/
+│   │   │       ├── austria.scss   ← Republik Österreich (Pantone 186 C)
+│   │   │       ├── eu.scss        ← European Union (Pantone 286 C + 116 C)
+│   │   │       └── neutral.scss   ← generic government, no national identity
 │   │   └── dist/              ← gitignored, tsup output
 │   └── tiefamt-storybook/     ← docs/showcase, NOT published to npm
 │       ├── package.json
@@ -89,22 +95,22 @@ GovPage/
 
 ---
 
-## Package metadata (`packages/tiefamt/package.json`)
+## Package metadata
+
+### `packages/core/package.json` (`@tiefamt/core`)
 
 ```json
 {
-  "name": "tiefamt",
+  "name": "@tiefamt/core",
   "version": "0.1.0",
   "type": "module",
+  "publishConfig": { "access": "public" },
   "exports": {
     ".": {
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./styles":                  "./dist/styles/govamt.css",
-    "./styles/presets/austria":  "./dist/styles/presets/austria.css",
-    "./styles/presets/eu":       "./dist/styles/presets/eu.css",
-    "./styles/presets/neutral":  "./dist/styles/presets/neutral.css"
+    "./styles": "./dist/styles/govamt.css"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -123,9 +129,34 @@ GovPage/
 }
 ```
 
+### `packages/styles/package.json` (`@tiefamt/styles`)
+
+```json
+{
+  "name": "@tiefamt/styles",
+  "version": "0.1.0",
+  "type": "module",
+  "publishConfig": { "access": "public" },
+  "exports": {
+    "./presets/austria": "./dist/presets/austria.css",
+    "./presets/eu":      "./dist/presets/eu.css",
+    "./presets/neutral": "./dist/presets/neutral.css"
+  },
+  "peerDependencies": {
+    "bootstrap": ">=5"
+  },
+  "devDependencies": {
+    "tsup": "latest",
+    "esbuild-sass-plugin": "latest"
+  }
+}
+```
+
 ---
 
-## tsup config (`packages/tiefamt/tsup.config.ts`)
+## tsup config
+
+### `packages/core/tsup.config.ts`
 
 ```ts
 import { defineConfig } from 'tsup'
@@ -134,15 +165,39 @@ export default defineConfig({
   entry: [
     'src/index.ts',
     'src/styles/govamt.scss',
-    'src/styles/presets/austria.scss',
-    'src/styles/presets/eu.scss',
-    'src/styles/presets/neutral.scss',
   ],
   format: ['esm', 'cjs'],
   dts: true,
   sourcemap: true,
   clean: true,
   external: ['react', 'react-dom', 'react-bootstrap', 'bootstrap'],
+})
+```
+
+### `packages/styles/tsup.config.ts`
+
+```ts
+import { defineConfig } from 'tsup'
+import { sassPlugin } from 'esbuild-sass-plugin'
+import path from 'path'
+
+export default defineConfig({
+  esbuildPlugins: [
+    sassPlugin({
+      quietDeps: true,
+      loadPaths: [path.resolve(__dirname, '../core/src/styles')],
+    }),
+  ],
+  entry: [
+    'src/presets/austria.scss',
+    'src/presets/eu.scss',
+    'src/presets/neutral.scss',
+  ],
+  format: ['esm'],
+  dts: false,
+  sourcemap: true,
+  clean: true,
+  external: ['bootstrap'],
 })
 ```
 
@@ -243,12 +298,12 @@ variables and then forwards to the base `govamt.scss`. No runtime switching.
 
 Consumer usage — import one preset instead of the base styles:
 ```scss
-// pick exactly one:
-@import 'tiefamt/styles/presets/austria';
-@import 'tiefamt/styles/presets/eu';
-@import 'tiefamt/styles/presets/neutral';
-// or the unstyled base:
-@import 'tiefamt/styles/govamt';
+// pick exactly one (from @tiefamt/styles):
+@import '@tiefamt/styles/presets/austria';
+@import '@tiefamt/styles/presets/eu';
+@import '@tiefamt/styles/presets/neutral';
+// or the unstyled base (from @tiefamt/core):
+@import '@tiefamt/core/styles';
 ```
 
 Each preset file follows this structure:
@@ -258,7 +313,8 @@ $primary: #CE1126;
 // ...
 
 // 2. forward to base — which imports Bootstrap internals + all TiefAmt partials
-@forward '../govamt';
+// 'govamt' resolves via loadPaths in @tiefamt/styles tsup config → packages/core/src/styles
+@forward 'govamt';
 ```
 
 ---
@@ -312,7 +368,7 @@ $table-hover-bg:      rgba(#CE1126, 0.04);
 $card-border-color: #C8C4BC;
 $card-bg:           #FDFAF6;   // slightly warmer than body-bg for layering
 
-@forward '../govamt';
+@forward 'govamt';
 ```
 
 ---
@@ -370,7 +426,7 @@ $table-border-color: #CED4DA;
 $table-striped-bg:   rgba(0, 0, 0, 0.025);
 $table-hover-bg:     rgba(#003399, 0.04);
 
-@forward '../govamt';
+@forward 'govamt';
 
 // Expose EU gold as a custom property — available to components for
 // decorative use (star rules, header accents) without polluting Bootstrap semantics
@@ -428,7 +484,7 @@ $table-border-color: #CCCCCC;
 $table-striped-bg:   rgba(0, 0, 0, 0.025);
 $table-hover-bg:     rgba(#2B4270, 0.04);
 
-@forward '../govamt';
+@forward 'govamt';
 ```
 
 ---
@@ -653,11 +709,11 @@ Keep it clean — one export per component file, re-exported here.
 ```json
 {
   "scripts": {
-    "build":   "cd packages/tiefamt && bun run build",
-    "dev":     "cd packages/tiefamt && bun run build --watch",
+    "build":     "cd packages/core && bun run build && cd ../styles && bun run build",
+    "dev":       "cd packages/core && bun run build --watch",
     "storybook": "cd packages/tiefamt-storybook && bun storybook",
-    "typecheck": "tsc --noEmit -p packages/tiefamt/tsconfig.json",
-    "lint":    "bunx eslint packages/tiefamt/src"
+    "typecheck": "tsc --noEmit -p packages/core/tsconfig.json",
+    "lint":      "bunx eslint packages/core/src"
   },
   "workspaces": ["packages/*"]
 }

@@ -1,0 +1,49 @@
+// Primary — Pantone 286 C (EU flag blue, exact)
+$primary:       #003399;
+$primary-dark:  #002277;
+$primary-light: #C5D0F0;
+
+// EU gold — Pantone 116 C
+// NOT assigned to $warning — gold is decorative/identity, not a semantic state
+$eu-gold:       #FFCC00;
+
+// Neutrals — cold, no warmth
+$secondary:     #6C757D;
+$body-bg:       #FFFFFF;
+$body-color:    #212529;
+$border-color:  #CED4DA;
+
+// Functional
+$success:       #1E7E34;
+$warning:       #D39E00;
+$danger:        #BD2130;
+$info:          #117A8B;
+
+// Typography — EU officially uses Arial; Source Sans 3 is the acceptable alternative.
+$font-family-base:    "Source Sans 3", "Arial", "Helvetica Neue", sans-serif;
+$font-family-heading: "Source Sans 3", "Arial", "Helvetica Neue", sans-serif;
+$font-size-base:      0.9375rem;
+$line-height-base:    1.55;
+$headings-font-weight: 700;
+
+// Geometry
+$border-radius:    2px;
+$border-radius-sm: 2px;
+$border-radius-lg: 4px;
+
+// Links
+$link-color:       $primary;
+$link-hover-color: $primary-dark;
+$link-decoration:  underline;
+
+// Tables
+$table-border-color: #CED4DA;
+$table-striped-bg:   rgba(0, 0, 0, 0.025);
+$table-hover-bg:     rgba(#003399, 0.04);
+
+@forward 'govamt';
+
+// Expose EU gold as a custom property for decorative use (star rules, header accents)
+:root {
+  --gov-eu-gold: #{$eu-gold};
+}

@@ -5,10 +5,10 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "cd packages/tiefamt && bun run build",
-    "dev": "cd packages/tiefamt && bun run build --watch",
+    "build": "cd packages/core && bun run build && cd ../styles && bun run build",
+    "dev": "cd packages/core && bun run build --watch",
     "storybook": "cd packages/tiefamt-storybook && bun storybook",
-    "typecheck": "tsc --noEmit -p packages/tiefamt/tsconfig.json",
-    "lint": "bunx eslint packages/tiefamt/src"
+    "typecheck": "tsc --noEmit -p packages/core/tsconfig.json",
+    "lint": "bunx eslint packages/core/src"
   }
 }

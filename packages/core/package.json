@@ -1,0 +1,43 @@
+{
+  "name": "@tiefamt/core",
+  "version": "0.1.0",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./styles": "./dist/styles/govamt.css"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup"
+  },
+  "peerDependencies": {
+    "react": ">=19.2.4",
+    "react-dom": ">=19.2.4",
+    "react-bootstrap": ">=2",
+    "bootstrap": ">=5"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1"
+  },
+  "devDependencies": {
+    "@types/react": "latest",
+    "bootstrap": "^5.3.3",
+    "esbuild-sass-plugin": "^3.7.0",
+    "react": "^19.2.4",
+    "react-bootstrap": "^2.10.6",
+    "react-dom": "^19.2.4",
+    "tsup": "latest",
+    "typescript": "latest"
+  }
+}

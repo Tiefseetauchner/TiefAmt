@@ -13,6 +13,7 @@ import {
   GovTable,
 } from 'tiefamt';
 import type { GovColumn } from 'tiefamt';
+import "tiefamt/styles/presets/austria";
 
 const meta: Meta<typeof GovPage> = {
   title: 'Layouts/GovPage',
@@ -44,7 +45,7 @@ const SECTIONS = [
 
 type Story = StoryObj<typeof GovPage>;
 
-export const FullPage: Story = {
+export const AustriaFullPage: Story = {
   render: () => (
     <GovProvider config={{ agencyName: 'Bundesministerium für Inneres', density: 'default' }}>
       <GovPage

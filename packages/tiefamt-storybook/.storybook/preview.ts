@@ -1,5 +1,5 @@
 import type { Preview } from '@storybook/react'
-import '../../tiefamt/src/styles/govamt.scss'
+import '../../core/src/styles/govamt.scss'
 
 const preview: Preview = {
   parameters: {

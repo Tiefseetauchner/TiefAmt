@@ -1,0 +1,44 @@
+// Primary — Pantone 186 C (Austrian flag red, exact)
+$primary:          #CE1126;
+$primary-dark:     #A50E1E;
+$primary-light:    #F2C4CB;
+
+// Neutrals — warm-shifted, never pure black or white
+$secondary:        #6B6B69;
+$body-bg:          #F7F5F0;
+$body-color:       #1C1C1B;
+$border-color:     #C8C4BC;
+
+// Functional — warm-shifted to avoid clashing with the red primary
+$success:          #2D6A2D;
+$warning:          #C45C00;
+$danger:           #8B0000;
+$info:             #1A4A7A;
+
+// Typography — transitional serif; federal Austrian comms use serif body text
+$font-family-base:    "Source Serif 4", "Georgia", serif;
+$font-family-heading: "Source Serif 4", "Georgia", serif;
+$font-size-base:      0.9375rem;
+$line-height-base:    1.6;
+$headings-font-weight: 600;
+
+// Geometry
+$border-radius:    2px;
+$border-radius-sm: 2px;
+$border-radius-lg: 4px;
+
+// Links
+$link-color:       $primary;
+$link-hover-color: $primary-dark;
+$link-decoration:  underline;
+
+// Tables
+$table-border-color:  #C8C4BC;
+$table-striped-bg:    rgba(0, 0, 0, 0.02);
+$table-hover-bg:      rgba(#CE1126, 0.04);
+
+// Cards
+$card-border-color: #C8C4BC;
+$card-bg:           #FDFAF6;
+
+@forward 'govamt';
