@@ -6,9 +6,9 @@
     "access": "public"
   },
   "exports": {
-    "./presets/austria": "./dist//austria.css",
-    "./presets/eu": "./dist//eu.css",
-    "./presets/neutral": "./dist//neutral.css"
+    "./presets/austria": "./dist/austria.css",
+    "./presets/eu": "./dist/eu.css",
+    "./presets/neutral": "./dist/neutral.css"
   },
   "files": [
     "dist"

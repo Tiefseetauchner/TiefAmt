@@ -1,6 +1,6 @@
-'use client'
+'use client';
 
-import { Nav, Form } from 'react-bootstrap'
+import { Nav, Form } from 'react-bootstrap';
 import {
   GovProvider,
   GovPage,
@@ -14,14 +14,14 @@ import {
   GovFormGroup,
   GovStatusBadge,
   GovWorkflowTracker,
-} from '@tiefamt/core'
-import type { GovColumn, WorkflowStep } from '@tiefamt/core'
+} from '@tiefamt/core';
+import type { GovColumn, WorkflowStep } from '@tiefamt/core';
 
 interface Row {
-  id: string
-  name: string
-  type: string
-  status: 'active' | 'pending' | 'approved'
+  id: string;
+  name: string;
+  type: string;
+  status: 'active' | 'pending' | 'approved';
 }
 
 const COLS: GovColumn<Row>[] = [
@@ -33,43 +33,43 @@ const COLS: GovColumn<Row>[] = [
     header: 'Status',
     render: (v) => <GovBadge variant={v as Row['status']} />,
   },
-]
+];
 
 const ROWS: Row[] = [
   { id: 'AZ-2026-001', name: 'Mustermann, Max', type: 'Gewerbeanmeldung', status: 'active' },
   { id: 'AZ-2026-002', name: 'Musterfrau, Maria', type: 'Baugenehmigung', status: 'pending' },
   { id: 'AZ-2026-003', name: 'Schmidt, Josef', type: 'Reisepass', status: 'approved' },
-]
+];
 
 const SECTIONS = [
   {
     heading: 'Hauptnavigation',
     items: [
       { label: 'Startseite', href: '/' },
-      { label: 'Anträge', href: '#' },
-      { label: 'Dokumente', href: '#' },
-      { label: 'Einstellungen', href: '#' },
+      { label: 'Anträge', href: '#stuff1' },
+      { label: 'Dokumente', href: '#stuff2' },
+      { label: 'Einstellungen', href: '#stuff3' },
     ],
   },
   {
     heading: 'Verwaltung',
     items: [
-      { label: 'Benutzer', href: '#' },
-      { label: 'Berichte', href: '#' },
+      { label: 'Benutzer', href: '#stuff4' },
+      { label: 'Berichte', href: '#stuff5' },
     ],
   },
-]
+];
 
 const WORKFLOW_STEPS: WorkflowStep[] = [
   { id: '1', label: 'Einreichung', status: 'complete', completedAt: '2026-03-10' },
   { id: '2', label: 'Formale Prüfung', status: 'complete', completedAt: '2026-03-12' },
   { id: '3', label: 'Sachbearbeitung', status: 'active', assignee: 'Mag. Hofbauer' },
   { id: '4', label: 'Genehmigung', status: 'pending' },
-]
+];
 
 interface DemoContentProps {
-  agencyName: string
-  presetLabel: string
+  agencyName: string;
+  presetLabel: string;
 }
 
 export default function DemoContent({ agencyName, presetLabel }: DemoContentProps) {
@@ -79,9 +79,9 @@ export default function DemoContent({ agencyName, presetLabel }: DemoContentProp
         header={
           <GovHeader>
             <Nav className="ms-auto gap-1">
-              <Nav.Link href="#">Startseite</Nav.Link>
-              <Nav.Link href="#">Dienste</Nav.Link>
-              <Nav.Link href="#">Kontakt</Nav.Link>
+              <Nav.Link href="homepage">Startseite</Nav.Link>
+              <Nav.Link href="services">Dienste</Nav.Link>
+              <Nav.Link href="contact">Kontakt</Nav.Link>
             </Nav>
           </GovHeader>
         }
@@ -123,7 +123,7 @@ export default function DemoContent({ agencyName, presetLabel }: DemoContentProp
         </GovFormGroup>
         <GovFormGroup inputId="status-filter" label="Status">
           <Form.Select>
-            <option value="">Alle Status</option>
+            <option value="">Alle</option>
             <option value="active">Aktiv</option>
             <option value="pending">Ausstehend</option>
             <option value="approved">Genehmigt</option>
@@ -138,5 +138,5 @@ export default function DemoContent({ agencyName, presetLabel }: DemoContentProp
         </div>
       </GovPage>
     </GovProvider>
-  )
+  );
 }

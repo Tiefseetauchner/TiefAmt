@@ -1,4 +1,4 @@
-import DemoContent from '../../components/DemoContent'
+import DemoContent from '../../components/DemoContent';
 
 export default function AustriaPage() {
   return (
@@ -6,5 +6,5 @@ export default function AustriaPage() {
       agencyName="Bundesministerium für Inneres"
       presetLabel="Austria — Pantone 186 C"
     />
-  )
+  );
 }

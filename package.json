@@ -6,8 +6,8 @@
   ],
   "scripts": {
     "build": "cd packages/core && bun run build && cd ../styles && bun run build",
-    "dev": "cd packages/core && bun run build --watch",
     "storybook": "cd packages/tiefamt-storybook && bun storybook",
+    "test": "cd packages/tiefamt-test && bun run dev",
     "typecheck": "tsc --noEmit -p packages/core/tsconfig.json",
     "lint": "bunx eslint packages/core/src"
   }

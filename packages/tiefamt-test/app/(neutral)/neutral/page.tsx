@@ -1,4 +1,4 @@
-import DemoContent from '../../components/DemoContent'
+import DemoContent from '../../components/DemoContent';
 
 export default function NeutralPage() {
   return (
@@ -6,5 +6,5 @@ export default function NeutralPage() {
       agencyName="Behörde für Innere Angelegenheiten"
       presetLabel="Neutral — no national identity"
     />
-  )
+  );
 }

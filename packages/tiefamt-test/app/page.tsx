@@ -4,7 +4,7 @@ export default function Home() {
     { href: '/austria', label: 'Austria', description: 'Pantone 186 C red, warm serif, Republik Österreich' },
     { href: '/eu', label: 'European Union', description: 'Pantone 286 C blue, Pantone 116 C gold accent' },
     { href: '/neutral', label: 'Neutral', description: 'Desaturated government navy, system font stack' },
-  ]
+  ];
 
   return (
     <main style={{ fontFamily: 'system-ui, sans-serif', padding: '2rem', maxWidth: '640px', margin: '0 auto' }}>
@@ -34,5 +34,5 @@ export default function Home() {
         </ul>
       </nav>
     </main>
-  )
+  );
 }

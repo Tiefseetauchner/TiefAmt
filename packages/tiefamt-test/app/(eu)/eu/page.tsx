@@ -1,4 +1,4 @@
-import DemoContent from '../../components/DemoContent'
+import DemoContent from '../../components/DemoContent';
 
 export default function EuPage() {
   return (
@@ -6,5 +6,5 @@ export default function EuPage() {
       agencyName="European Commission"
       presetLabel="European Union — Pantone 286 C"
     />
-  )
+  );
 }
