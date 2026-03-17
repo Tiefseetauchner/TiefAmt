@@ -1,30 +1,18 @@
-[15:36:48.238] [INFO] storybook v10.2.19
-[15:36:49.412] [DEBUG] Getting package.json info for /home/lena/Documents/software/tiefamt/packages/tiefamt-storybook/package.json...
-[15:36:50.245] [INFO] Starting...
-[15:36:50.641] [DEBUG] Starting preview..
-[15:36:50.656] [WARN] 🚨 Unable to index ./stories/GovPage.stories.tsx,./stories/GovPageAustria.stories.tsx:
-  Error: Duplicate stories with id: layouts-govpage--full-page
-    at _StoryIndexGenerator.chooseDuplicate (file:///home/lena/Documents/software/tiefamt/node_modules/.bun/storybook@10.2.19+7d74ec26920ad4c8/node_modules/storybook/dist/core-server/index.js:6033:13)
-    at file:///home/lena/Documents/software/tiefamt/node_modules/.bun/storybook@10.2.19+7d74ec26920ad4c8/node_modules/storybook/dist/core-server/index.js:6092:52
-    at Array.forEach (<anonymous>)
-    at _StoryIndexGenerator.getIndexAndStats (file:///home/lena/Documents/software/tiefamt/node_modules/.bun/storybook@10.2.19+7d74ec26920ad4c8/node_modules/storybook/dist/core-server/index.js:6089:23)
-    at async _StoryIndexGenerator.getIndex (file:///home/lena/Documents/software/tiefamt/node_modules/.bun/storybook@10.2.19+7d74ec26920ad4c8/node_modules/storybook/dist/core-server/index.js:6076:13)
-    at async getOptimizeDeps (file:///home/lena/Documents/software/tiefamt/node_modules/.bun/@storybook+builder-vite@10.2.19+035fa76e64a9c617/node_modules/@storybook/builder-vite/dist/index.js:1879:15)
-    at async createViteServer (file:///home/lena/Documents/software/tiefamt/node_modules/.bun/@storybook+builder-vite@10.2.19+035fa76e64a9c617/node_modules/@storybook/builder-vite/dist/index.js:1906:19)
-    at async Module.start (file:///home/lena/Documents/software/tiefamt/node_modules/.bun/@storybook+builder-vite@10.2.19+035fa76e64a9c617/node_modules/@storybook/builder-vite/dist/index.js:1934:17)
-    at async storybookDevServer (file:///home/lena/Documents/software/tiefamt/node_modules/.bun/storybook@10.2.19+7d74ec26920ad4c8/node_modules/storybook/dist/core-server/index.js:7295:83)
-    at async buildOrThrow (file:///home/lena/Documents/software/tiefamt/node_modules/.bun/storybook@10.2.19+7d74ec26920ad4c8/node_modules/storybook/dist/core-server/index.js:4506:12)
-[15:36:50.664] [ERROR] Failed to build the preview
-[15:36:50.665] [ERROR] Error: Unable to index ./stories/GovPage.stories.tsx,./stories/GovPageAustria.stories.tsx
-    at _StoryIndexGenerator.getIndexAndStats (file:///home/lena/Documents/software/tiefamt/node_modules/.bun/storybook@10.2.19+7d74ec26920ad4c8/node_modules/storybook/dist/core-server/index.js:6097:15)
-    at async _StoryIndexGenerator.getIndex (file:///home/lena/Documents/software/tiefamt/node_modules/.bun/storybook@10.2.19+7d74ec26920ad4c8/node_modules/storybook/dist/core-server/index.js:6076:13)
-    at async getOptimizeDeps (file:///home/lena/Documents/software/tiefamt/node_modules/.bun/@storybook+builder-vite@10.2.19+035fa76e64a9c617/node_modules/@storybook/builder-vite/dist/index.js:1879:15)
-    at async createViteServer (file:///home/lena/Documents/software/tiefamt/node_modules/.bun/@storybook+builder-vite@10.2.19+035fa76e64a9c617/node_modules/@storybook/builder-vite/dist/index.js:1906:19)
-    at async Module.start (file:///home/lena/Documents/software/tiefamt/node_modules/.bun/@storybook+builder-vite@10.2.19+035fa76e64a9c617/node_modules/@storybook/builder-vite/dist/index.js:1934:17)
+[16:31:40.439] [INFO] storybook v10.2.19
+[16:31:41.687] [DEBUG] Getting package.json info for /home/lena/Documents/software/tiefamt/packages/tiefamt-storybook/package.json...
+[16:31:42.629] [INFO] Starting...
+[16:31:43.098] [DEBUG] Starting preview..
+[16:31:43.203] [ERROR] Failed to build the preview
+[16:31:43.209] [ERROR] [38;2;241;97;97mReferenceError: __dirname is not defined[39m
+    at Object.viteFinal (file://./.storybook/main.ts:13:50)
+    at file:///home/lena/Documents/software/tiefamt/node_modules/.bun/storybook@10.2.19+7d74ec26920ad4c8/node_modules/storybook/dist/_node-chunks/chunk-2RKLK4B2.js:10114:36
+    at async createViteServer (file:///home/lena/Documents/software/tiefamt/node_modules/.bun/@storybook+builder-vite@10.2.19+1a18198f2122704f/node_modules/@storybook/builder-vite/dist/index.js:1909:21)
+    at async Module.start (file:///home/lena/Documents/software/tiefamt/node_modules/.bun/@storybook+builder-vite@10.2.19+1a18198f2122704f/node_modules/@storybook/builder-vite/dist/index.js:1934:17)
     at async storybookDevServer (file:///home/lena/Documents/software/tiefamt/node_modules/.bun/storybook@10.2.19+7d74ec26920ad4c8/node_modules/storybook/dist/core-server/index.js:7295:83)
     at async buildOrThrow (file:///home/lena/Documents/software/tiefamt/node_modules/.bun/storybook@10.2.19+7d74ec26920ad4c8/node_modules/storybook/dist/core-server/index.js:4506:12)
     at async buildDevStandalone (file:///home/lena/Documents/software/tiefamt/node_modules/.bun/storybook@10.2.19+7d74ec26920ad4c8/node_modules/storybook/dist/core-server/index.js:7710:41)
     at async withTelemetry (file:///home/lena/Documents/software/tiefamt/node_modules/.bun/storybook@10.2.19+7d74ec26920ad4c8/node_modules/storybook/dist/_node-chunks/chunk-FJZ625UU.js:218:12)
     at async dev (file:///home/lena/Documents/software/tiefamt/node_modules/.bun/storybook@10.2.19+7d74ec26920ad4c8/node_modules/storybook/dist/bin/core.js:2734:3)
-[15:36:50.668] [WARN] Broken build, fix the error above.
+    at async _Command.<anonymous> (file:///home/lena/Documents/software/tiefamt/node_modules/.bun/storybook@10.2.19+7d74ec26920ad4c8/node_modules/storybook/dist/bin/core.js:2804:92)
+[16:31:43.214] [WARN] Broken build, fix the error above.
 You may need to refresh the browser.

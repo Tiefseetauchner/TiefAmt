@@ -1,7 +1,8 @@
+import '../../core/src/styles/govamt.scss';
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
-import { GovFilterChip, GovFilterPanel, GovProvider, GovSearchBar } from 'tiefamt'
-import type { FilterFieldSchema } from 'tiefamt'
+import { GovFilterChip, GovFilterPanel, GovProvider, GovSearchBar } from '@tiefamt/core'
+import type { FilterFieldSchema } from '@tiefamt/core'
 
 const meta: Meta = {
   title: 'DMS/Search & Filter',

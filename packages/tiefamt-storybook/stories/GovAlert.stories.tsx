@@ -1,5 +1,6 @@
+import '../../core/src/styles/govamt.scss';
 import type { Meta, StoryObj } from '@storybook/react'
-import { GovAlert, GovProvider } from 'tiefamt'
+import { GovAlert, GovProvider } from '@tiefamt/core'
 
 const meta: Meta<typeof GovAlert> = {
   title: 'Components/GovAlert',

@@ -1,7 +1,8 @@
+import '../../core/src/styles/govamt.scss';
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
-import { GovBadge, GovProvider, GovTable } from 'tiefamt'
-import type { GovColumn, SortDirection } from 'tiefamt'
+import { GovBadge, GovProvider, GovTable } from '@tiefamt/core'
+import type { GovColumn, SortDirection } from '@tiefamt/core'
 
 const meta: Meta<typeof GovTable> = {
   title: 'Components/GovTable',

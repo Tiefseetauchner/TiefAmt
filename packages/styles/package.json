@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "bootstrap": "^5.3.3",
+    "@types/node": "latest",
     "esbuild-sass-plugin": "^3.7.0",
     "tsup": "latest",
     "typescript": "latest"

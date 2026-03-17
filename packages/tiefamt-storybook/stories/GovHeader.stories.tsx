@@ -1,6 +1,7 @@
+import '../../core/src/styles/govamt.scss';
 import type { Meta, StoryObj } from '@storybook/react'
 import { Nav } from 'react-bootstrap'
-import { GovHeader, GovProvider } from 'tiefamt'
+import { GovHeader, GovProvider } from '@tiefamt/core'
 
 const meta: Meta<typeof GovHeader> = {
   title: 'Components/GovHeader',

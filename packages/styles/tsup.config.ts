@@ -1,13 +1,19 @@
-import { defineConfig } from 'tsup'
-import { sassPlugin } from 'esbuild-sass-plugin'
-import path from 'path'
+import { defineConfig } from 'tsup';
+import { sassPlugin } from 'esbuild-sass-plugin';
+import { fileURLToPath } from 'url';
+import { resolve, dirname } from 'path';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   esbuildPlugins: [
     sassPlugin({
       quietDeps: true,
       silenceDeprecations: ['import'],
-      loadPaths: [path.resolve(__dirname, '../core/src/styles')],
+      loadPaths: [
+        resolve(__dirname, '../core/src/styles'),
+        resolve(__dirname, 'node_modules'),
+      ],
     }),
   ],
   entry: [
@@ -20,4 +26,4 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   external: ['bootstrap'],
-})
+});

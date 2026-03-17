@@ -1,5 +1,6 @@
+import '../../core/src/styles/govamt.scss';
 import type { Meta, StoryObj } from '@storybook/react'
-import { GovBanner, GovProvider } from 'tiefamt'
+import { GovBanner, GovProvider } from '@tiefamt/core'
 
 const meta: Meta<typeof GovBanner> = {
   title: 'Components/GovBanner',

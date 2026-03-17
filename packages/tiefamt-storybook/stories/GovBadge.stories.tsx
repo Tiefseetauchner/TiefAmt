@@ -1,5 +1,6 @@
+import '../../core/src/styles/govamt.scss';
 import type { Meta, StoryObj } from '@storybook/react'
-import { GovBadge, GovProvider } from 'tiefamt'
+import { GovBadge, GovProvider } from '@tiefamt/core'
 
 const meta: Meta<typeof GovBadge> = {
   title: 'Components/GovBadge',

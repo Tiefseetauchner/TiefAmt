@@ -1,7 +1,8 @@
+import '../../core/src/styles/govamt.scss';
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
-import { GovDataTable, GovProvider, GovStatusBadge } from 'tiefamt'
-import type { GovColumnDef, GovDocumentStatus } from 'tiefamt'
+import { GovDataTable, GovProvider, GovStatusBadge } from '@tiefamt/core'
+import type { GovColumnDef, GovDocumentStatus } from '@tiefamt/core'
 
 interface Doc {
   id: string

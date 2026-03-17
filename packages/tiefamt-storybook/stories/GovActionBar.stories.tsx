@@ -1,5 +1,6 @@
+import '../../core/src/styles/govamt.scss';
 import type { Meta, StoryObj } from '@storybook/react'
-import { GovActionBar, GovProvider } from 'tiefamt'
+import { GovActionBar, GovProvider } from '@tiefamt/core'
 
 const meta: Meta<typeof GovActionBar> = {
   title: 'DMS/GovActionBar',

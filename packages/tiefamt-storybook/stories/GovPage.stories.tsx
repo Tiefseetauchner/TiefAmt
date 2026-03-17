@@ -1,3 +1,4 @@
+import '../../core/src/styles/govamt.scss';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Form } from 'react-bootstrap';
 import {
@@ -11,11 +12,11 @@ import {
   GovProvider,
   GovSidebar,
   GovTable,
-} from 'tiefamt';
-import type { GovColumn } from 'tiefamt';
+} from '@tiefamt/core';
+import type { GovColumn } from '@tiefamt/core';
 
 const meta: Meta<typeof GovPage> = {
-  title: 'Layouts/GovPage',
+  title: 'Presets/Base',
   component: GovPage,
   parameters: { layout: 'fullscreen' },
 };

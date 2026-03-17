@@ -1,3 +1,4 @@
+import '../../core/src/styles/govamt.scss';
 import type { Meta, StoryObj } from '@storybook/react'
 import { useState } from 'react'
 import { Button } from 'react-bootstrap'
@@ -5,8 +6,8 @@ import {
   GovDocumentDrawer,
   GovPdfViewer,
   GovProvider,
-} from 'tiefamt'
-import type { GovDocumentMeta, GovWorkflowAction } from 'tiefamt'
+} from '@tiefamt/core'
+import type { GovDocumentMeta, GovWorkflowAction } from '@tiefamt/core'
 
 const DOC: GovDocumentMeta = {
   id: 'AZ-2026-042',

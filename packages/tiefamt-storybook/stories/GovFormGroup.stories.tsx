@@ -1,6 +1,7 @@
+import '../../core/src/styles/govamt.scss';
 import type { Meta, StoryObj } from '@storybook/react'
 import { Form } from 'react-bootstrap'
-import { GovFormGroup, GovProvider } from 'tiefamt'
+import { GovFormGroup, GovProvider } from '@tiefamt/core'
 
 const meta: Meta<typeof GovFormGroup> = {
   title: 'Components/GovFormGroup',

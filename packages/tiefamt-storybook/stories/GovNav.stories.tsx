@@ -1,5 +1,6 @@
+import '../../core/src/styles/govamt.scss';
 import type { Meta, StoryObj } from '@storybook/react'
-import { GovNav, GovProvider, GovSidebar } from 'tiefamt'
+import { GovNav, GovProvider, GovSidebar } from '@tiefamt/core'
 
 const SECTIONS = [
   {

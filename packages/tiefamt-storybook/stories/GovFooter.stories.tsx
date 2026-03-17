@@ -1,5 +1,6 @@
+import '../../core/src/styles/govamt.scss';
 import type { Meta, StoryObj } from '@storybook/react'
-import { GovFooter, GovProvider } from 'tiefamt'
+import { GovFooter, GovProvider } from '@tiefamt/core'
 
 const meta: Meta<typeof GovFooter> = {
   title: 'Components/GovFooter',

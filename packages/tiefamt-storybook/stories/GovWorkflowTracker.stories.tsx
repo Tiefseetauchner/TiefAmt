@@ -1,6 +1,7 @@
+import '../../core/src/styles/govamt.scss';
 import type { Meta, StoryObj } from '@storybook/react'
-import { GovProvider, GovWorkflowTracker } from 'tiefamt'
-import type { WorkflowStep } from 'tiefamt'
+import { GovProvider, GovWorkflowTracker } from '@tiefamt/core'
+import type { WorkflowStep } from '@tiefamt/core'
 
 const STEPS: WorkflowStep[] = [
   { id: '1', label: 'Eingereicht', status: 'complete', assignee: 'M. Mustermann', completedAt: '10.03.2026' },
