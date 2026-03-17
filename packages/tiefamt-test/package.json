@@ -1,0 +1,26 @@
+{
+  "name": "tiefamt-test",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "predev": "cd ../.. && bun run build",
+    "dev": "next dev --port 3001",
+    "build": "next build",
+    "start": "next start --port 3001"
+  },
+  "dependencies": {
+    "@tiefamt/core": "workspace:*",
+    "@tiefamt/styles": "workspace:*",
+    "bootstrap": "^5.3.3",
+    "next": "^15.3.3",
+    "react": "^19.2.4",
+    "react-bootstrap": "^2.10.6",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "typescript": "latest"
+  }
+}
