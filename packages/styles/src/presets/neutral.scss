@@ -1,41 +1,94 @@
-// Primary — desaturated government navy, no strong national association
+// Neutral preset — layers on top of @tiefamt/core/styles/govamt
+// Import order: govamt first, then this file.
+//
+// Desaturated navy, no national identity, system font stack.
+
 $primary:       #2B4270;
 $primary-dark:  #1E2F52;
 $primary-light: #C8D2E8;
-
-// Neutrals — fully desaturated
-$secondary:     #6C6C6C;
 $body-bg:       #F5F5F5;
 $body-color:    #1A1A1A;
 $border-color:  #CCCCCC;
-
-// Functional
 $success:       #276227;
 $warning:       #C45C00;
 $danger:        #B01C1C;
 $info:          #1A5276;
 
-// Typography — system stack, no web font loading at all
-$font-family-base:    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-                      "Helvetica Neue", Arial, sans-serif;
-$font-family-heading: $font-family-base;
-$font-size-base:      0.9375rem;
-$line-height-base:    1.55;
-$headings-font-weight: 600;
+// ─── Root tokens ────────────────────────────────────────────────────────────
+:root {
+  // Bootstrap semantic colors
+  --bs-primary:     #{$primary};
+  --bs-primary-rgb: 43, 66, 112;
 
-// Geometry
-$border-radius:    2px;
-$border-radius-sm: 2px;
-$border-radius-lg: 4px;
+  // Body
+  --bs-body-bg:      #{$body-bg};
+  --bs-body-color:   #{$body-color};
+  --bs-border-color: #{$border-color};
 
-// Links
-$link-color:       $primary;
-$link-hover-color: $primary-dark;
-$link-decoration:  underline;
+  // Typography — system stack, zero web font dependency
+  --bs-body-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                         "Helvetica Neue", Arial, sans-serif;
+  --bs-body-line-height: 1.55;
 
-// Tables
-$table-border-color: #CCCCCC;
-$table-striped-bg:   rgba(0, 0, 0, 0.025);
-$table-hover-bg:     rgba(#2B4270, 0.04);
+  // Links
+  --bs-link-color:           #{$primary};
+  --bs-link-color-rgb:       43, 66, 112;
+  --bs-link-hover-color:     #{$primary-dark};
+  --bs-link-hover-color-rgb: 30, 47, 82;
+  --bs-link-decoration:      underline;
 
-@forward 'govamt';
+  // Functional
+  --bs-success-rgb: 39, 98, 39;
+  --bs-warning-rgb: 196, 92, 0;
+  --bs-danger-rgb:  176, 28, 28;
+  --bs-info-rgb:    26, 82, 118;
+
+  // TiefAmt tokens
+  --gov-primary:       #{$primary};
+  --gov-primary-dark:  #{$primary-dark};
+  --gov-primary-light: #{$primary-light};
+}
+
+// ─── Bootstrap component overrides ──────────────────────────────────────────
+.btn-primary {
+  --bs-btn-bg:             #{$primary};
+  --bs-btn-border-color:   #{$primary};
+  --bs-btn-hover-bg:       #{$primary-dark};
+  --bs-btn-hover-border-color: #{$primary-dark};
+  --bs-btn-active-bg:      #{$primary-dark};
+  --bs-btn-active-border-color: #{$primary-dark};
+  --bs-btn-disabled-bg:    #{$primary};
+  --bs-btn-disabled-border-color: #{$primary};
+}
+
+.btn-outline-primary {
+  --bs-btn-color:           #{$primary};
+  --bs-btn-border-color:    #{$primary};
+  --bs-btn-hover-bg:        #{$primary};
+  --bs-btn-hover-border-color: #{$primary};
+  --bs-btn-active-bg:       #{$primary};
+  --bs-btn-active-border-color: #{$primary};
+}
+
+.bg-primary        { background-color: #{$primary} !important; }
+.text-primary      { color: #{$primary} !important; }
+.border-primary    { border-color: #{$primary} !important; }
+
+.badge.bg-primary,
+.badge.text-bg-primary {
+  --bs-badge-color: #fff;
+  background-color: #{$primary} !important;
+}
+
+.alert-primary {
+  --bs-alert-bg:           #{$primary-light};
+  --bs-alert-border-color: #{$primary};
+  --bs-alert-color:        #{$primary-dark};
+}
+
+.nav-link:hover,
+.nav-link:focus    { color: #{$primary}; }
+.nav-link.active   { color: #{$primary}; }
+
+a { color: #{$primary}; }
+a:hover { color: #{$primary-dark}; }

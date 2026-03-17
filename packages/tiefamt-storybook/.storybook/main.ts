@@ -13,18 +13,8 @@ const config: StorybookConfig = {
   },
   viteFinal: (config) => {
     config.resolve ??= {};
-    config.resolve.alias = {
-      ...(config.resolve.alias as Record<string, string>),
-      '@tiefamt/styles/presets/austria': resolve(__dirname, '../../styles/src/presets/austria.scss'),
-      '@tiefamt/styles/presets/eu':      resolve(__dirname, '../../styles/src/presets/eu.scss'),
-      '@tiefamt/styles/presets/neutral': resolve(__dirname, '../../styles/src/presets/neutral.scss'),
-    };
     config.css ??= {};
     config.css.preprocessorOptions ??= {};
-    config.css.preprocessorOptions.scss ??= {};
-    config.css.preprocessorOptions.scss.loadPaths = [
-      resolve(__dirname, '../../core/src/styles'),
-    ];
     return config;
   },
 };

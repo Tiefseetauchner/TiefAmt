@@ -42,6 +42,25 @@
         "bootstrap": ">=5",
       },
     },
+    "packages/test-app": {
+      "name": "tiefamt-test-app",
+      "dependencies": {
+        "@tiefamt/core": "workspace:*",
+        "@tiefamt/styles": "workspace:*",
+      },
+      "devDependencies": {
+        "@types/react": "latest",
+        "@types/react-dom": "latest",
+        "@vitejs/plugin-react": "^6.0.1",
+        "bootstrap": "^5.3.3",
+        "react": "^19.2.4",
+        "react-bootstrap": "^2.10.6",
+        "react-dom": "^19.2.4",
+        "sass": "^1.86.1",
+        "typescript": "latest",
+        "vite": "^8.0.0",
+      },
+    },
     "packages/tiefamt-storybook": {
       "name": "tiefamt-storybook",
       "dependencies": {
@@ -703,6 +722,8 @@
     "thenify-all": ["thenify-all@1.6.0", "", { "dependencies": { "thenify": ">= 3.1.0 < 4" } }, "sha512-RNxQH/qI8/t3thXJDwcstUO4zeqo64+Uy/+sNVRBx4Xn2OX+OZ9oP+iJnNFqplFra2ZUVeKCSa2oVWi3T4uVmA=="],
 
     "tiefamt-storybook": ["tiefamt-storybook@workspace:packages/tiefamt-storybook"],
+
+    "tiefamt-test-app": ["tiefamt-test-app@workspace:packages/test-app"],
 
     "tiny-invariant": ["tiny-invariant@1.3.3", "", {}, "sha512-+FbBPE1o9QAYvviau/qC5SE3caw21q3xkvWKBtja5vgqOWIHHJ3ioaq1VPfn/Szqctz2bU/oYeKd9/z5BL+PVg=="],
 

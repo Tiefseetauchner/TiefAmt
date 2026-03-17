@@ -1,7 +1,6 @@
-import '../../core/src/styles/govamt.scss';
-import type { Meta, StoryObj } from '@storybook/react'
-import { Nav } from 'react-bootstrap'
-import { GovHeader, GovProvider } from '@tiefamt/core'
+import type { Meta, StoryObj } from '@storybook/react';
+import { Nav } from 'react-bootstrap';
+import { GovHeader, GovProvider } from '@tiefamt/core';
 
 const meta: Meta<typeof GovHeader> = {
   title: 'Components/GovHeader',
@@ -14,10 +13,10 @@ const meta: Meta<typeof GovHeader> = {
       </GovProvider>
     ),
   ],
-}
-export default meta
+};
+export default meta;
 
-type Story = StoryObj<typeof GovHeader>
+type Story = StoryObj<typeof GovHeader>;
 
 export const Default: Story = {
   args: {
@@ -29,4 +28,4 @@ export const Default: Story = {
       </Nav>
     ),
   },
-}
+};

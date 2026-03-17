@@ -1,15 +1,14 @@
-import '../../core/src/styles/govamt.scss';
-import type { Meta, StoryObj } from '@storybook/react'
-import { useState } from 'react'
-import { GovDataTable, GovProvider, GovStatusBadge } from '@tiefamt/core'
-import type { GovColumnDef, GovDocumentStatus } from '@tiefamt/core'
+import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
+import { GovDataTable, GovProvider, GovStatusBadge } from '@tiefamt/core';
+import type { GovColumnDef, GovDocumentStatus } from '@tiefamt/core';
 
 interface Doc {
-  id: string
-  title: string
-  type: string
-  status: GovDocumentStatus
-  date: string
+  id: string;
+  title: string;
+  type: string;
+  status: GovDocumentStatus;
+  date: string;
 }
 
 const ALL_DOCS: Doc[] = Array.from({ length: 23 }, (_, i) => ({
@@ -18,7 +17,7 @@ const ALL_DOCS: Doc[] = Array.from({ length: 23 }, (_, i) => ({
   type: i % 3 === 0 ? 'Bescheid' : i % 3 === 1 ? 'Antrag' : 'Erlass',
   status: (['draft', 'submitted', 'under-review', 'approved', 'rejected'] as GovDocumentStatus[])[i % 5],
   date: `${String((i % 28) + 1).padStart(2, '0')}.01.2026`,
-}))
+}));
 
 const COLS: GovColumnDef<Doc>[] = [
   { key: 'id', header: 'Aktenzeichen', render: (r) => r.id, sortable: true },
@@ -26,7 +25,7 @@ const COLS: GovColumnDef<Doc>[] = [
   { key: 'type', header: 'Typ', render: (r) => r.type },
   { key: 'status', header: 'Status', render: (r) => <GovStatusBadge status={r.status} /> },
   { key: 'date', header: 'Datum', render: (r) => r.date },
-]
+];
 
 const meta: Meta = {
   title: 'DMS/GovDataTable',
@@ -39,15 +38,15 @@ const meta: Meta = {
       </GovProvider>
     ),
   ],
-}
-export default meta
+};
+export default meta;
 
 export const Default: StoryObj = {
   render: () => {
-    const [page, setPage] = useState(1)
-    const [selected, setSelected] = useState<string[]>([])
-    const pageSize = 5
-    const paged = ALL_DOCS.slice((page - 1) * pageSize, page * pageSize)
+    const [page, setPage] = useState(1);
+    const [selected, setSelected] = useState<string[]>([]);
+    const pageSize = 5;
+    const paged = ALL_DOCS.slice((page - 1) * pageSize, page * pageSize);
 
     return (
       <GovDataTable
@@ -62,9 +61,9 @@ export const Default: StoryObj = {
         onSelectionChange={setSelected}
         caption="Vorgänge"
       />
-    )
+    );
   },
-}
+};
 
 export const Empty: StoryObj = {
   render: () => (
@@ -74,9 +73,9 @@ export const Empty: StoryObj = {
       totalCount={0}
       page={1}
       pageSize={5}
-      onPageChange={() => {}}
+      onPageChange={() => { }}
       renderEmpty={() => 'Keine Dokumente gefunden.'}
       caption="Leere Tabelle"
     />
   ),
-}
+};

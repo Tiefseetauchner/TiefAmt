@@ -10,7 +10,8 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./styles": "./dist/styles/govamt.css"
+    "./styles": "./dist/styles/govamt.css",
+    "./styles/govamt": "./dist/styles/govamt.css"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",

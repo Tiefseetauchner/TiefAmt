@@ -1,6 +1,5 @@
-import '../../core/src/styles/govamt.scss';
-import type { Meta, StoryObj } from '@storybook/react'
-import { GovNav, GovProvider, GovSidebar } from '@tiefamt/core'
+import type { Meta, StoryObj } from '@storybook/react';
+import { GovNav, GovProvider, GovSidebar } from '@tiefamt/core';
 
 const SECTIONS = [
   {
@@ -18,7 +17,7 @@ const SECTIONS = [
       { label: 'Zugangsdaten', href: '#' },
     ],
   },
-]
+];
 
 const meta: Meta<typeof GovNav> = {
   title: 'Components/GovNav',
@@ -32,14 +31,14 @@ const meta: Meta<typeof GovNav> = {
       </GovProvider>
     ),
   ],
-}
-export default meta
+};
+export default meta;
 
-type Story = StoryObj<typeof GovNav>
+type Story = StoryObj<typeof GovNav>;
 
 export const Default: Story = {
   args: { sections: SECTIONS },
-}
+};
 
 export const InSidebar: Story = {
   render: () => (
@@ -50,4 +49,4 @@ export const InSidebar: Story = {
       </div>
     </GovProvider>
   ),
-}
+};

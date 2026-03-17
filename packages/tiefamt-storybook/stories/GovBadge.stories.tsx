@@ -1,6 +1,5 @@
-import '../../core/src/styles/govamt.scss';
-import type { Meta, StoryObj } from '@storybook/react'
-import { GovBadge, GovProvider } from '@tiefamt/core'
+import type { Meta, StoryObj } from '@storybook/react';
+import { GovBadge, GovProvider } from '@tiefamt/core';
 
 const meta: Meta<typeof GovBadge> = {
   title: 'Components/GovBadge',
@@ -20,10 +19,10 @@ const meta: Meta<typeof GovBadge> = {
       options: ['active', 'pending', 'revoked', 'expired', 'draft', 'approved'],
     },
   },
-}
-export default meta
+};
+export default meta;
 
-type Story = StoryObj<typeof GovBadge>
+type Story = StoryObj<typeof GovBadge>;
 
 export const AllVariants: Story = {
   render: () => (
@@ -36,7 +35,7 @@ export const AllVariants: Story = {
       <GovBadge variant="revoked" />
     </>
   ),
-}
+};
 
-export const Active: Story = { args: { variant: 'active' } }
-export const Pending: Story = { args: { variant: 'pending' } }
+export const Active: Story = { args: { variant: 'active' } };
+export const Pending: Story = { args: { variant: 'pending' } };

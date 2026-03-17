@@ -1,13 +1,12 @@
-import '../../core/src/styles/govamt.scss';
-import type { Meta, StoryObj } from '@storybook/react'
-import { useState } from 'react'
-import { Button } from 'react-bootstrap'
+import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
+import { Button } from 'react-bootstrap';
 import {
   GovDocumentDrawer,
   GovPdfViewer,
   GovProvider,
-} from '@tiefamt/core'
-import type { GovDocumentMeta, GovWorkflowAction } from '@tiefamt/core'
+} from '@tiefamt/core';
+import type { GovDocumentMeta, GovWorkflowAction } from '@tiefamt/core';
 
 const DOC: GovDocumentMeta = {
   id: 'AZ-2026-042',
@@ -20,7 +19,7 @@ const DOC: GovDocumentMeta = {
     { id: '2', label: 'Erstprüfung', status: 'active', assignee: 'Ref. Bau' },
     { id: '3', label: 'Genehmigung', status: 'pending' },
   ],
-}
+};
 
 const meta: Meta = {
   title: 'DMS/GovDocumentDrawer',
@@ -31,15 +30,15 @@ const meta: Meta = {
       </GovProvider>
     ),
   ],
-}
-export default meta
+};
+export default meta;
 
 export const Default: StoryObj = {
   render: () => {
-    const [show, setShow] = useState(false)
+    const [show, setShow] = useState(false);
     function handleAction(action: GovWorkflowAction, id: string) {
-      alert(`Action: ${action} on ${id}`)
-      setShow(false)
+      alert(`Action: ${action} on ${id}`);
+      setShow(false);
     }
     return (
       <>
@@ -62,6 +61,6 @@ export const Default: StoryObj = {
           )}
         />
       </>
-    )
+    );
   },
-}
+};

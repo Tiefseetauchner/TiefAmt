@@ -1,6 +1,5 @@
-import '../../core/src/styles/govamt.scss';
-import type { Meta, StoryObj } from '@storybook/react'
-import { GovProvider, GovStatusBadge } from '@tiefamt/core'
+import type { Meta, StoryObj } from '@storybook/react';
+import { GovProvider, GovStatusBadge } from '@tiefamt/core';
 
 const meta: Meta<typeof GovStatusBadge> = {
   title: 'DMS/GovStatusBadge',
@@ -14,10 +13,10 @@ const meta: Meta<typeof GovStatusBadge> = {
       </GovProvider>
     ),
   ],
-}
-export default meta
+};
+export default meta;
 
-type Story = StoryObj<typeof GovStatusBadge>
+type Story = StoryObj<typeof GovStatusBadge>;
 
 export const AllStatuses: Story = {
   render: () => (
@@ -30,7 +29,7 @@ export const AllStatuses: Story = {
       <GovStatusBadge status="returned" />
     </>
   ),
-}
+};
 
 export const WithTransition: Story = {
   args: {
@@ -38,4 +37,4 @@ export const WithTransition: Story = {
     previousStatus: 'under-review',
     timestamp: '17.03.2026',
   },
-}
+};

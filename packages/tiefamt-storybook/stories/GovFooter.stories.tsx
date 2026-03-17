@@ -1,6 +1,5 @@
-import '../../core/src/styles/govamt.scss';
-import type { Meta, StoryObj } from '@storybook/react'
-import { GovFooter, GovProvider } from '@tiefamt/core'
+import type { Meta, StoryObj } from '@storybook/react';
+import { GovFooter, GovProvider } from '@tiefamt/core';
 
 const meta: Meta<typeof GovFooter> = {
   title: 'Components/GovFooter',
@@ -13,10 +12,10 @@ const meta: Meta<typeof GovFooter> = {
       </GovProvider>
     ),
   ],
-}
-export default meta
+};
+export default meta;
 
-type Story = StoryObj<typeof GovFooter>
+type Story = StoryObj<typeof GovFooter>;
 
 export const Default: Story = {
   args: {
@@ -28,4 +27,4 @@ export const Default: Story = {
       { label: 'Sitemap', href: '#' },
     ],
   },
-}
+};

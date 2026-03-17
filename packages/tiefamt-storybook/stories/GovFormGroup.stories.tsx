@@ -1,7 +1,6 @@
-import '../../core/src/styles/govamt.scss';
-import type { Meta, StoryObj } from '@storybook/react'
-import { Form } from 'react-bootstrap'
-import { GovFormGroup, GovProvider } from '@tiefamt/core'
+import type { Meta, StoryObj } from '@storybook/react';
+import { Form } from 'react-bootstrap';
+import { GovFormGroup, GovProvider } from '@tiefamt/core';
 
 const meta: Meta<typeof GovFormGroup> = {
   title: 'Components/GovFormGroup',
@@ -15,10 +14,10 @@ const meta: Meta<typeof GovFormGroup> = {
       </GovProvider>
     ),
   ],
-}
-export default meta
+};
+export default meta;
 
-type Story = StoryObj<typeof GovFormGroup>
+type Story = StoryObj<typeof GovFormGroup>;
 
 export const Default: Story = {
   args: {
@@ -27,7 +26,7 @@ export const Default: Story = {
     hint: 'Wie auf dem Personalausweis.',
     children: <Form.Control type="text" placeholder="Max" />,
   },
-}
+};
 
 export const Required: Story = {
   args: {
@@ -36,7 +35,7 @@ export const Required: Story = {
     required: true,
     children: <Form.Control type="text" />,
   },
-}
+};
 
 export const WithError: Story = {
   args: {
@@ -46,4 +45,4 @@ export const WithError: Story = {
     error: 'Bitte geben Sie eine gültige Sozialversicherungsnummer ein.',
     children: <Form.Control type="text" isInvalid />,
   },
-}
+};

@@ -1,4 +1,3 @@
-import '../../core/src/styles/govamt.scss';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Form } from 'react-bootstrap';
 import {

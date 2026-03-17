@@ -1,6 +1,5 @@
-import '../../core/src/styles/govamt.scss';
-import type { Meta, StoryObj } from '@storybook/react'
-import { GovBanner, GovProvider } from '@tiefamt/core'
+import type { Meta, StoryObj } from '@storybook/react';
+import { GovBanner, GovProvider } from '@tiefamt/core';
 
 const meta: Meta<typeof GovBanner> = {
   title: 'Components/GovBanner',
@@ -12,18 +11,18 @@ const meta: Meta<typeof GovBanner> = {
       </GovProvider>
     ),
   ],
-}
-export default meta
+};
+export default meta;
 
-type Story = StoryObj<typeof GovBanner>
+type Story = StoryObj<typeof GovBanner>;
 
 export const Default: Story = {
   args: {
     forceShow: true,
     dismissible: true,
-    children: 'Dies ist eine offizielle Website einer österreichischen Behörde.',
+    children: 'Dies ist ein Test.',
   },
-}
+};
 
 export const CustomContent: Story = {
   args: {
@@ -35,8 +34,8 @@ export const CustomContent: Story = {
       </>
     ),
   },
-}
+};
 
 export const NonDismissible: Story = {
-  args: { forceShow: true, dismissible: false },
-}
+  args: { forceShow: true, dismissible: false, children: (<>Dies ist ein toller Test</>) },
+};

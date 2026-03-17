@@ -1,6 +1,5 @@
-import '../../core/src/styles/govamt.scss';
-import type { Meta, StoryObj } from '@storybook/react'
-import { GovActionBar, GovProvider } from '@tiefamt/core'
+import type { Meta, StoryObj } from '@storybook/react';
+import { GovActionBar, GovProvider } from '@tiefamt/core';
 
 const meta: Meta<typeof GovActionBar> = {
   title: 'DMS/GovActionBar',
@@ -21,19 +20,19 @@ const meta: Meta<typeof GovActionBar> = {
       options: ['draft', 'submitted', 'under-review', 'approved', 'rejected', 'returned'],
     },
   },
-}
-export default meta
+};
+export default meta;
 
-type Story = StoryObj<typeof GovActionBar>
+type Story = StoryObj<typeof GovActionBar>;
 
 export const Submitted: Story = {
   args: { documentStatus: 'submitted', sticky: false, onAction: (a) => alert(a) },
-}
+};
 
 export const Draft: Story = {
   args: { documentStatus: 'draft', sticky: false, onAction: (a) => alert(a) },
-}
+};
 
 export const Approved: Story = {
   args: { documentStatus: 'approved', sticky: false, onAction: (a) => alert(a) },
-}
+};

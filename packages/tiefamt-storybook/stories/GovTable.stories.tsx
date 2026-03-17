@@ -1,8 +1,7 @@
-import '../../core/src/styles/govamt.scss';
-import type { Meta, StoryObj } from '@storybook/react'
-import { useState } from 'react'
-import { GovBadge, GovProvider, GovTable } from '@tiefamt/core'
-import type { GovColumn, SortDirection } from '@tiefamt/core'
+import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
+import { GovBadge, GovProvider, GovTable } from '@tiefamt/core';
+import type { GovColumn, SortDirection } from '@tiefamt/core';
 
 const meta: Meta<typeof GovTable> = {
   title: 'Components/GovTable',
@@ -16,14 +15,14 @@ const meta: Meta<typeof GovTable> = {
       </GovProvider>
     ),
   ],
-}
-export default meta
+};
+export default meta;
 
 interface Antrag {
-  id: string
-  name: string
-  datum: string
-  status: 'active' | 'pending' | 'revoked' | 'expired' | 'draft' | 'approved'
+  id: string;
+  name: string;
+  datum: string;
+  status: 'active' | 'pending' | 'revoked' | 'expired' | 'draft' | 'approved';
 }
 
 const DATA: Antrag[] = [
@@ -31,7 +30,7 @@ const DATA: Antrag[] = [
   { id: 'AZ-2026-002', name: 'Musterfrau, Maria', datum: '15.01.2026', status: 'pending' },
   { id: 'AZ-2025-099', name: 'Testperson, Hans', datum: '30.12.2025', status: 'approved' },
   { id: 'AZ-2025-050', name: 'Beispiel, Erika', datum: '01.07.2025', status: 'expired' },
-]
+];
 
 const COLUMNS: GovColumn<Antrag>[] = [
   { key: 'id', header: 'Aktenzeichen', sortable: true },
@@ -42,9 +41,9 @@ const COLUMNS: GovColumn<Antrag>[] = [
     header: 'Status',
     render: (value) => <GovBadge variant={value as Antrag['status']} />,
   },
-]
+];
 
-type Story = StoryObj<typeof GovTable>
+type Story = StoryObj<typeof GovTable>;
 
 export const Default: Story = {
   args: {
@@ -53,24 +52,24 @@ export const Default: Story = {
     caption: 'Anträge — Übersicht',
     rowKey: (row: Antrag) => row.id,
   },
-}
+};
 
 export const Sortable: Story = {
   render: () => {
-    const [sortCol, setSortCol] = useState<string>('id')
-    const [sortDir, setSortDir] = useState<SortDirection>('asc')
+    const [sortCol, setSortCol] = useState<string>('id');
+    const [sortDir, setSortDir] = useState<SortDirection>('asc');
 
     function handleSort(col: string, dir: SortDirection) {
-      setSortCol(col)
-      setSortDir(dir)
+      setSortCol(col);
+      setSortDir(dir);
     }
 
     const sorted = [...DATA].sort((a, b) => {
-      if (sortDir === 'none') return 0
-      const av = (a as Record<string, string>)[sortCol] ?? ''
-      const bv = (b as Record<string, string>)[sortCol] ?? ''
-      return sortDir === 'asc' ? av.localeCompare(bv) : bv.localeCompare(av)
-    })
+      if (sortDir === 'none') return 0;
+      const av = (a as Record<string, string>)[sortCol] ?? '';
+      const bv = (b as Record<string, string>)[sortCol] ?? '';
+      return sortDir === 'asc' ? av.localeCompare(bv) : bv.localeCompare(av);
+    });
 
     return (
       <GovTable
@@ -83,6 +82,6 @@ export const Sortable: Story = {
         sortDirection={sortDir}
         onSort={handleSort}
       />
-    )
+    );
   },
-}
+};
