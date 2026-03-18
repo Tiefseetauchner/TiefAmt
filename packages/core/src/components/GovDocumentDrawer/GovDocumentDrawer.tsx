@@ -2,12 +2,13 @@ import { Offcanvas } from 'react-bootstrap'
 import { GovActionBar } from '../GovActionBar/GovActionBar'
 import { GovStatusBadge } from '../GovStatusBadge/GovStatusBadge'
 import { GovWorkflowTracker } from '../GovWorkflowTracker/GovWorkflowTracker'
-import type { GovDocumentDrawerProps } from '../../types/workflow'
+import type { GovDocumentDrawerProps } from './GovDocumentDrawer.types'
 
 export function GovDocumentDrawer({
   show,
   onHide,
   document: doc,
+  actions,
   onAction,
   renderPreview,
 }: GovDocumentDrawerProps) {
@@ -26,7 +27,6 @@ export function GovDocumentDrawer({
       </Offcanvas.Header>
 
       <Offcanvas.Body>
-        {/* Metadata header */}
         <div className="gov-document-drawer__meta">
           <div className="gov-document-drawer__meta-title">{doc.title}</div>
           <div className="gov-document-drawer__meta-row">
@@ -37,24 +37,21 @@ export function GovDocumentDrawer({
           </div>
         </div>
 
-        {/* Workflow tracker */}
         {doc.workflowSteps && doc.workflowSteps.length > 0 && (
           <div className="gov-document-drawer__workflow">
             <GovWorkflowTracker steps={doc.workflowSteps} orientation="horizontal" />
           </div>
         )}
 
-        {/* Preview slot */}
         {renderPreview && (
           <div className="gov-document-drawer__preview">
             {renderPreview()}
           </div>
         )}
 
-        {/* Action bar — sticky at bottom of the drawer body */}
         <GovActionBar
-          documentStatus={doc.status}
-          onAction={(action) => onAction(action, doc.id)}
+          actions={actions}
+          onAction={(key) => onAction(key, doc.id)}
           sticky={false}
           style={{ borderTop: '2px solid var(--bs-primary)', marginTop: 'auto' }}
         />

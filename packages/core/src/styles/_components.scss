@@ -53,19 +53,11 @@
 // ── GovAlert ─────────────────────────────────────────────────────────────────
 
 .gov-alert {
-  border-left-width: 4px;
   border-radius: 0;
 
-  &--erlass {
-    border-left-color: var(--bs-warning, #e65100);
-    background-color: #fff8f0;
-    color: #4a2800;
-  }
-
-  &--pflichthinweis {
-    border-left-color: var(--bs-danger, #b71c1c);
-    background-color: #fff5f5;
-    color: #4a0000;
+  &--accented {
+    border-left-width: 4px;
+    border-left-color: var(--bs-alert-border-color);
   }
 }
 
@@ -110,7 +102,8 @@
     }
   }
 
-  td, th {
+  td,
+  th {
     padding: var(--gov-cell-pad-y) var(--gov-cell-pad-x);
   }
 }
@@ -142,14 +135,32 @@
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 0.2em 0.5em;
+  padding: 0.5em 0.8em;
 
-  &--active    { background-color: #2e7d32; color: #fff; }
-  &--pending   { background-color: #e65100; color: #fff; }
-  &--revoked   { background-color: #b71c1c; color: #fff; }
-  &--expired   { background-color: #5a6a8a; color: #fff; }
-  &--draft     { background-color: #c8c8c8; color: #1a1a1a; }
-  &--approved  { background-color: #01579b; color: #fff; }
+  &--success {
+    background-color: #2e7d32;
+    color: #fff;
+  }
+  &--warning {
+    background-color: #e65100;
+    color: #fff;
+  }
+  &--danger {
+    background-color: #b71c1c;
+    color: #fff;
+  }
+  &--neutral {
+    background-color: #5a6a8a;
+    color: #fff;
+  }
+  &--subtle {
+    background-color: #c8c8c8;
+    color: #1a1a1a;
+  }
+  &--info {
+    background-color: #01579b;
+    color: #fff;
+  }
 }
 
 // ── GovFooter ─────────────────────────────────────────────────────────────────
@@ -263,12 +274,30 @@
   text-transform: uppercase;
   padding: 0.2em 0.5em;
 
-  &--draft        { background-color: #c8c8c8; color: #1a1a1a; }
-  &--submitted    { background-color: #01579b; color: #fff; }
-  &--under-review { background-color: #e65100; color: #fff; }
-  &--approved     { background-color: #2e7d32; color: #fff; }
-  &--rejected     { background-color: #b71c1c; color: #fff; }
-  &--returned     { background-color: #5a6a8a; color: #fff; }
+  &--draft {
+    background-color: #c8c8c8;
+    color: #1a1a1a;
+  }
+  &--submitted {
+    background-color: #01579b;
+    color: #fff;
+  }
+  &--under-review {
+    background-color: #e65100;
+    color: #fff;
+  }
+  &--approved {
+    background-color: #2e7d32;
+    color: #fff;
+  }
+  &--rejected {
+    background-color: #b71c1c;
+    color: #fff;
+  }
+  &--returned {
+    background-color: #5a6a8a;
+    color: #fff;
+  }
 
   &__transition {
     font-weight: 400;
@@ -309,7 +338,7 @@
       text-align: center;
 
       &:not(:last-child)::after {
-        content: '';
+        content: "";
         position: absolute;
         top: 0.875rem;
         left: calc(50% + 0.875rem);
@@ -329,7 +358,7 @@
       padding-bottom: 1.25rem;
 
       &:not(:last-child)::after {
-        content: '';
+        content: "";
         position: absolute;
         left: 0.875rem;
         top: 1.75rem;
@@ -391,8 +420,12 @@
   &__label {
     font-size: 0.8125rem;
 
-    .gov-workflow-tracker__step--active & { font-weight: 600; }
-    .gov-workflow-tracker__step--skipped & { color: #5a6a8a; }
+    .gov-workflow-tracker__step--active & {
+      font-weight: 600;
+    }
+    .gov-workflow-tracker__step--skipped & {
+      color: #5a6a8a;
+    }
   }
 
   &__meta {
@@ -418,7 +451,9 @@
     z-index: 100;
   }
 
-  &__spacer { flex: 1; }
+  &__spacer {
+    flex: 1;
+  }
 }
 
 // ── GovSearchBar ─────────────────────────────────────────────────────────────
@@ -462,7 +497,9 @@
   padding: 0.125rem 0.5rem;
   color: #1a1a1a;
 
-  &__label { color: #5a6a8a; }
+  &__label {
+    color: #5a6a8a;
+  }
 
   &__remove {
     background: none;
@@ -473,7 +510,9 @@
     color: #5a6a8a;
     font-size: 0.875rem;
 
-    &:hover { color: var(--bs-danger, #b71c1c); }
+    &:hover {
+      color: var(--bs-danger, #b71c1c);
+    }
   }
 }
 
@@ -509,7 +548,9 @@
   &__group {
     margin-bottom: var(--gov-row-gap);
 
-    &:last-child { margin-bottom: 0; }
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   &__group-label {
@@ -612,8 +653,12 @@
 }
 
 @keyframes gov-skeleton-shimmer {
-  0%   { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 // ── GovDocumentCard ───────────────────────────────────────────────────────────

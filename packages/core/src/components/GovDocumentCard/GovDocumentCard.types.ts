@@ -1,13 +1,12 @@
-import type React from 'react'
-import type { GovDocumentStatus } from '../../types/workflow'
+import type React from "react";
 
 export interface GovDocumentCardProps extends React.HTMLAttributes<HTMLDivElement> {
-  title: string
-  documentType: string
-  status: GovDocumentStatus
-  date: string
+  title: string;
+  documentType: string;
+  status: string;
+  date: string;
   /** URL to a first-page JPEG thumbnail */
-  thumbnailSrc?: string
+  thumbnailSrc?: string;
   /** Fallback icon when no thumbnail is available */
-  icon?: React.ReactNode
+  icon?: React.ReactNode;
 }

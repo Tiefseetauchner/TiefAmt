@@ -1,108 +1,64 @@
-import { useState } from 'react'
-import { Button, Modal } from 'react-bootstrap'
-import { WORKFLOW_TRANSITIONS } from '../../types/workflow'
-import type { GovWorkflowAction } from '../../types/workflow'
-import { gcn } from '../../utils/govClassNames'
-import type { GovActionBarProps } from './GovActionBar.types'
+import { useState } from "react";
+import { Button, Modal } from "react-bootstrap";
+import { gcn } from "../../utils/govClassNames";
+import type { GovActionDef } from "../../types/workflow";
+import type { GovActionBarProps } from "./GovActionBar.types";
 
-interface ActionConfig {
-  label: string
-  variant: string
-  destructive: boolean
-  confirmMessage: string
-}
-
-const ACTION_CONFIG: Record<GovWorkflowAction, ActionConfig> = {
-  submit:       { label: 'Einreichen',          variant: 'primary',   destructive: false, confirmMessage: '' },
-  approve:      { label: 'Genehmigen',           variant: 'success',   destructive: false, confirmMessage: '' },
-  reject:       { label: 'Ablehnen',             variant: 'danger',    destructive: true,  confirmMessage: 'Möchten Sie dieses Dokument wirklich ablehnen? Diese Aktion kann nicht rückgängig gemacht werden.' },
-  return:       { label: 'Zurückgeben',          variant: 'warning',   destructive: true,  confirmMessage: 'Möchten Sie dieses Dokument zurückgeben?' },
-  'request-info': { label: 'Auskunft anfordern', variant: 'secondary', destructive: false, confirmMessage: '' },
-  retract:      { label: 'Zurückziehen',         variant: 'outline-secondary', destructive: true, confirmMessage: 'Möchten Sie die Einreichung zurückziehen?' },
-}
-
-export function GovActionBar({
-  documentStatus,
+export function GovActionBar<TKey extends string = string>({
+  actions,
   onAction,
   sticky = true,
   leading,
   className,
   ...rest
-}: GovActionBarProps) {
-  const [pendingAction, setPendingAction] = useState<GovWorkflowAction | null>(null)
+}: GovActionBarProps<TKey>) {
+  const [pendingAction, setPendingAction] = useState<GovActionDef<TKey> | null>(null);
 
-  const availableActions = WORKFLOW_TRANSITIONS[documentStatus]
-
-  function handleClick(action: GovWorkflowAction) {
-    if (ACTION_CONFIG[action].destructive) {
-      setPendingAction(action)
+  function handleClick(action: GovActionDef<TKey>) {
+    if (action.confirm) {
+      setPendingAction(action);
     } else {
-      onAction(action)
+      onAction(action.key);
     }
   }
 
   function confirmAction() {
     if (pendingAction) {
-      onAction(pendingAction)
-      setPendingAction(null)
+      onAction(pendingAction.key);
+      setPendingAction(null);
     }
   }
 
-  if (availableActions.length === 0) return null
+  if (actions.length === 0) return null;
 
   return (
     <>
-      <div
-        className={gcn('gov-action-bar', sticky && 'gov-action-bar--sticky', className)}
-        {...rest}
-      >
+      <div className={gcn("gov-action-bar", sticky && "gov-action-bar--sticky", className)} {...rest}>
         {leading && <div>{leading}</div>}
         <div className="gov-action-bar__spacer" />
-        {availableActions.map((action) => {
-          const cfg = ACTION_CONFIG[action]
-          return (
-            <Button
-              key={action}
-              variant={cfg.variant}
-              size="sm"
-              onClick={() => handleClick(action)}
-            >
-              {cfg.label}
-            </Button>
-          )
-        })}
+        {actions.map((action) => (
+          <Button key={action.key} variant={action.variant ?? "secondary"} size="sm" onClick={() => handleClick(action)}>
+            {action.label}
+          </Button>
+        ))}
       </div>
 
-      {/* Confirmation dialog for destructive actions */}
-      <Modal
-        show={pendingAction !== null}
-        onHide={() => setPendingAction(null)}
-        centered
-        size="sm"
-      >
+      <Modal show={pendingAction !== null} onHide={() => setPendingAction(null)} centered size="sm">
         <Modal.Header closeButton>
-          <Modal.Title style={{ fontSize: '1rem' }}>
-            {pendingAction ? ACTION_CONFIG[pendingAction].label : ''}
-          </Modal.Title>
+          <Modal.Title style={{ fontSize: "1rem" }}>{pendingAction?.label}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          {pendingAction ? ACTION_CONFIG[pendingAction].confirmMessage : ''}
-        </Modal.Body>
+        <Modal.Body>{pendingAction?.confirm}</Modal.Body>
         <Modal.Footer>
           <Button variant="outline-secondary" size="sm" onClick={() => setPendingAction(null)}>
             Abbrechen
           </Button>
-          <Button
-            variant={pendingAction ? ACTION_CONFIG[pendingAction].variant : 'primary'}
-            size="sm"
-            onClick={confirmAction}
-          >
+          <Button variant={pendingAction?.variant ?? "primary"} size="sm" onClick={confirmAction}>
             Bestätigen
           </Button>
         </Modal.Footer>
       </Modal>
     </>
-  )
+  );
 }
 
-export default GovActionBar
+export default GovActionBar;

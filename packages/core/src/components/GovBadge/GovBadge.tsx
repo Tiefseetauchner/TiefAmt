@@ -1,15 +1,6 @@
 import { Badge } from 'react-bootstrap';
 import { gcn } from '../../utils/govClassNames';
-import type { GovBadgeProps, GovBadgeVariant } from './GovBadge.types';
-
-const DEFAULT_LABELS: Record<GovBadgeVariant, string> = {
-  active: 'Aktiv',
-  pending: 'In Bearbeitung',
-  revoked: 'Widerrufen',
-  expired: 'Abgelaufen',
-  draft: 'Entwurf',
-  approved: 'Genehmigt',
-};
+import type { GovBadgeProps } from './GovBadge.types';
 
 export function GovBadge({
   variant,
@@ -26,7 +17,7 @@ export function GovBadge({
       {...bsProps}
       {...rest}
     >
-      {children ?? DEFAULT_LABELS[variant]}
+      {children}
     </Badge>
   );
 }

@@ -1,17 +1,12 @@
-import type React from 'react'
-
-export interface GovFooterLink {
-  label: string
-  href: string
-}
+import type React from "react";
 
 export interface GovFooterProps extends React.HTMLAttributes<HTMLElement> {
   /** Override agency name (defaults to GovContext) */
-  agencyName?: string
+  agencyName?: string;
   /** Address or contact line */
-  address?: React.ReactNode
+  address?: React.ReactNode;
   /** Legal / navigation links */
-  links?: GovFooterLink[]
+  links?: React.ReactNode[];
   /** Extra content in the bottom row */
-  children?: React.ReactNode
+  children?: React.ReactNode;
 }

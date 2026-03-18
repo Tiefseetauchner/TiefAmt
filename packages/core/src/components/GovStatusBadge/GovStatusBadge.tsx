@@ -1,8 +1,7 @@
 import { gcn } from '../../utils/govClassNames'
 import type { GovStatusBadgeProps } from './GovStatusBadge.types'
-import type { GovDocumentStatus } from '../../types/workflow'
 
-const LABELS: Record<GovDocumentStatus, string> = {
+const LABELS: Record<string, string> = {
   draft:          'Entwurf',
   submitted:      'Eingereicht',
   'under-review': 'In Prüfung',
@@ -25,10 +24,10 @@ export function GovStatusBadge({
     >
       {previousStatus && (
         <span className="gov-status-badge__transition">
-          {LABELS[previousStatus]} →{' '}
+          {LABELS[previousStatus] ?? previousStatus} →{' '}
         </span>
       )}
-      {LABELS[status]}
+      {LABELS[status] ?? status}
       {timestamp && (
         <span className="gov-status-badge__timestamp"> · {timestamp}</span>
       )}
