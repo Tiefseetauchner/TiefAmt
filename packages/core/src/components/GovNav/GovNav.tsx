@@ -1,34 +1,48 @@
 import React from 'react'
 import { Nav } from 'react-bootstrap'
 import { gcn } from '../../utils/govClassNames'
-import type { GovNavProps } from './GovNav.types'
+import type { GovNavProps, GovNavSectionProps, GovNavItemProps } from './GovNav.types'
 
-export function GovNav({ sections, className, bsProps, ...rest }: GovNavProps) {
+export function GovNavSection({ heading, children, ...rest }: GovNavSectionProps) {
+  return (
+    <React.Fragment>
+      {heading && (
+        <li role="presentation" {...rest}>
+          <p className="gov-nav__section-heading">{heading}</p>
+        </li>
+      )}
+      {children}
+    </React.Fragment>
+  )
+}
+
+export function GovNavItem<As extends React.ElementType = 'a'>({
+  as,
+  icon,
+  active,
+  children,
+  className,
+  ...rest
+}: GovNavItemProps<As>) {
+  const Comp = (as ?? 'a') as React.ElementType
+  return (
+    <li role="presentation">
+      <Comp
+        className={gcn('nav-link d-flex align-items-center gap-2', active && 'active', className)}
+        {...rest}
+      >
+        {icon && <span aria-hidden="true">{icon}</span>}
+        {children}
+      </Comp>
+    </li>
+  )
+}
+
+export function GovNav({ children, className, bsProps, ...rest }: GovNavProps) {
   return (
     <nav className={gcn('gov-nav', className)} {...rest}>
       <Nav as="ul" className="flex-column" {...bsProps}>
-        {sections.map((section, sectionIndex) => (
-          <React.Fragment key={sectionIndex}>
-            {section.heading && (
-              <li role="presentation">
-                <p className="gov-nav__section-heading">{section.heading}</p>
-              </li>
-            )}
-            {section.items.map((item) => (
-              <li key={item.href} role="presentation">
-                <Nav.Link
-                  as="a"
-                  href={item.href}
-                  active={item.active}
-                  className="d-flex align-items-center gap-2"
-                >
-                  {item.icon && <span aria-hidden="true">{item.icon}</span>}
-                  {item.label}
-                </Nav.Link>
-              </li>
-            ))}
-          </React.Fragment>
-        ))}
+        {children}
       </Nav>
     </nav>
   )

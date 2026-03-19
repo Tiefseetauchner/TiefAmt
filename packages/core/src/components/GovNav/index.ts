@@ -1,2 +1,2 @@
-export { GovNav, GovNav as default } from './GovNav'
-export type { GovNavProps, GovNavSection, GovNavItem } from './GovNav.types'
+export { GovNav, GovNav as default, GovNavSection, GovNavItem } from './GovNav'
+export type { GovNavProps, GovNavSectionProps, GovNavItemProps } from './GovNav.types'

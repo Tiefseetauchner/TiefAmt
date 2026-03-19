@@ -1,40 +1,24 @@
-import React from 'react'
-import { Form } from 'react-bootstrap'
-import { gcn } from '../../utils/govClassNames'
-import type { GovFormGroupProps } from './GovFormGroup.types'
+import React from "react";
+import { Form } from "react-bootstrap";
+import { gcn } from "../../utils/govClassNames";
+import type { GovFormGroupProps } from "./GovFormGroup.types";
 
-export function GovFormGroup({
-  inputId,
-  label,
-  required,
-  hint,
-  error,
-  children,
-  className,
-  bsProps,
-  ...rest
-}: GovFormGroupProps) {
-  const hintId = hint ? `${inputId}-hint` : undefined
-  const errorId = error ? `${inputId}-error` : undefined
+export function GovFormGroup({ inputId, label, required, hint, error, children, className, bsProps, ...rest }: GovFormGroupProps) {
+  const hintId = hint ? `${inputId}-hint` : undefined;
+  const errorId = error ? `${inputId}-error` : undefined;
 
   // Inject aria-describedby and aria-invalid onto the child input
-  const describedBy = [hintId, errorId].filter(Boolean).join(' ') || undefined
+  const describedBy = [hintId, errorId].filter(Boolean).join(" ") || undefined;
   const childWithA11y = React.isValidElement(children)
     ? React.cloneElement(children as React.ReactElement<React.HTMLAttributes<HTMLElement>>, {
-        id: inputId,
-        'aria-describedby': describedBy,
-        'aria-invalid': error ? true : undefined,
-        'aria-required': required ? true : undefined,
+        "aria-describedby": describedBy,
+        "aria-invalid": error ? true : undefined,
+        "aria-required": required ? true : undefined,
       })
-    : children
+    : children;
 
   return (
-    <Form.Group
-      controlId={inputId}
-      className={gcn('gov-form-group', className)}
-      {...bsProps}
-      {...rest}
-    >
+    <Form.Group controlId={inputId} className={gcn("gov-form-group", className)} {...bsProps} {...rest}>
       <Form.Label>
         {label}
         {required && (
@@ -58,7 +42,7 @@ export function GovFormGroup({
         </div>
       )}
     </Form.Group>
-  )
+  );
 }
 
-export default GovFormGroup
+export default GovFormGroup;

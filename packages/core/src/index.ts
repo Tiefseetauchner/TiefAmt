@@ -32,8 +32,8 @@ export type { GovAlertProps, GovAlertVariant } from "./components/GovAlert";
 export { GovBadge } from "./components/GovBadge";
 export type { GovBadgeProps } from "./components/GovBadge";
 
-export { GovNav } from "./components/GovNav";
-export type { GovNavProps, GovNavSection, GovNavItem } from "./components/GovNav";
+export { GovNav, GovNavSection, GovNavItem } from "./components/GovNav";
+export type { GovNavProps, GovNavSectionProps, GovNavItemProps } from "./components/GovNav";
 
 export { GovSidebar } from "./components/GovSidebar";
 export type { GovSidebarProps } from "./components/GovSidebar";
