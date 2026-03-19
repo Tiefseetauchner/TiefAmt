@@ -1,6 +1,8 @@
 "use client";
 
 import {
+  CustomFilterEntry,
+  FilterField,
   GovActionBar,
   GovAlert,
   GovBadge,
@@ -9,17 +11,18 @@ import {
   GovDataTable,
   GovDocumentCard,
   GovDocumentDrawer,
-  GovFilterChip,
+  GovFilterFieldType,
   GovFilterPanel,
-  GovPdfViewer,
   GovProvider,
   GovStatusBadge,
   GovWorkflowDef,
-  GovWorkflowTracker,
+  MultiSelectFilterField,
+  SelectFilterField,
+  customFilter,
   resolveGovActions,
 } from "@tiefamt/core";
 import { useEffect, useState } from "react";
-import { Button, Collapse, Container, Modal, Row } from "react-bootstrap";
+import { Button, Container, Modal, ToggleButton } from "react-bootstrap";
 
 interface DemoContentProps {
   agencyName: string;
@@ -76,6 +79,11 @@ type Doc = {
   name: string;
 };
 
+type CustomFilterPanelTypes = GovFilterFieldType | "toggle";
+type FilterPanelKeys = "john" | "frances" | "problemchild";
+
+interface ToggleFilterField<TKey extends string> extends FilterField<TKey, "toggle", boolean, boolean> {}
+
 export default function DemoContent({ agencyName, presetLabel }: DemoContentProps) {
   let [currentDocState, setCurrentDocState] = useState<WorkflowStates>("incoming");
   let [currentBadgeVariant, setCurrentBadgeVariant] = useState<GovBadgeVariant>("neutral");
@@ -85,6 +93,7 @@ export default function DemoContent({ agencyName, presetLabel }: DemoContentProp
     direction: "asc",
   });
   let [activeDocument, setActiveDocument] = useState<Doc | undefined>();
+  let [filters, setFilters] = useState<Record<string, unknown>>({});
 
   useEffect(() => {
     setCurrentBadgeVariant(getBadgeVariantFromState(currentDocState));
@@ -208,7 +217,7 @@ export default function DemoContent({ agencyName, presetLabel }: DemoContentProp
           renderEmpty={() => "Empty"}
         />
 
-        <GovDocumentCard title={activeDocument?.name ?? ""} documentType="Complaint Record" date="10. 0. 2021" status="info" statusLabel="Toaster" />
+        <GovDocumentCard title={activeDocument?.name ?? ""} documentType="Complaint Record" date="10. 0. 2021" status="info" statusLabel="toggle" />
 
         <GovDocumentDrawer show={activeDocument !== undefined} onHide={() => setActiveDocument(undefined)} title={activeDocument?.name}>
           <GovStatusBadge status={getBadgeVariantFromState(activeDocument?.state ?? "incoming")} label={activeDocument?.state ?? ""} />
@@ -238,7 +247,59 @@ export default function DemoContent({ agencyName, presetLabel }: DemoContentProp
           />
         </GovDocumentDrawer>
 
-        <GovFilterPanel schema={[{}]} />
+        <GovFilterPanel<FilterPanelKeys, CustomFilterPanelTypes>
+          schema={[
+            {
+              key: "john",
+              label: "John",
+              type: "select",
+              options: [
+                { label: "Magic", value: { id: 1, name: "Nothing", state: "archived" } },
+                { label: "Fun", value: { id: 2, name: "Nothing", state: "archived" } },
+                { label: "Omnibus", value: { id: 3, name: "Nothing", state: "archived" } },
+              ],
+              emptyOptionLabel: "Select your option of doom",
+            } as SelectFilterField<FilterPanelKeys, Doc>,
+            {
+              key: "problemchild",
+              label: "Multiple Select Problem Child",
+              type: "multiselect",
+              options: [
+                { label: "Magic", value: { id: 1, name: "Nothing", state: "archived" } },
+                { label: "Fun", value: { id: 2, name: "Nothing", state: "archived" } },
+                { label: "Omnibus", value: { id: 3, name: "Nothing", state: "archived" } },
+              ],
+              emptyOptionLabel: "Select your option of doom",
+            } as MultiSelectFilterField<FilterPanelKeys, Doc>,
+            {
+              key: "frances",
+              type: "toggle",
+              label: "Frances",
+            } as ToggleFilterField<"frances">,
+          ]}
+          customFilterFields={[
+            customFilter<FilterPanelKeys, CustomFilterPanelTypes, boolean>({
+              key: "toggle",
+              field(field, value, onChange) {
+                return (
+                  <ToggleButton
+                    id={field.key}
+                    checked={value}
+                    variant={value ? "danger" : "success"}
+                    onClick={() => onChange(!value)}
+                    value={`${value}`}
+                  >
+                    {value ? "Turn off" : "Turn on"}
+                  </ToggleButton>
+                );
+              },
+            }),
+          ]}
+          value={filters}
+          onChange={function (filters: Record<string, unknown>): void {
+            setFilters(filters);
+          }}
+        />
       </Container>
     </GovProvider>
   );

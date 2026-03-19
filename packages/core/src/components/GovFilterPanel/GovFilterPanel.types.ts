@@ -1,23 +1,60 @@
 import type React from "react";
 
-export interface FilterFieldSchema {
-  key: string;
+export interface FilterFieldProps<TKey extends string, TType extends string, TFilterFieldType, TFilterValueType> {
+  field: FilterField<TKey, TType, TFilterFieldType, TFilterValueType>;
+  value: TFilterValueType;
+  onChange: (val: TFilterValueType | undefined) => void;
+  customFilterFields?: CustomFilterEntry<TKey, TType>[];
+}
+
+export type GovFilterFieldType = "text" | "select" | "daterange" | "multiselect";
+
+export interface FilterField<TKey extends string, TType extends string, _TFilterFieldType, _TFilterValueType> {
+  key: TKey;
+  type: TType;
   label: string;
-  type: "text" | "select" | "daterange" | "multiselect";
-  options?: { label: string; value: string }[];
-  /** Label for the empty/all option in select fields; omit to not render an empty option */
+}
+
+export interface TextFilterField<TKey extends string> extends FilterField<TKey, "text", string, string> {}
+
+export interface SelectFilterField<TKey extends string, TFilterFieldType> extends FilterField<TKey, "select", TFilterFieldType, TFilterFieldType> {
+  options: { label: string; value: TFilterFieldType }[];
+  emptyOptionLabel: string;
+}
+
+export interface MultiSelectFilterField<TKey extends string, TFilterFieldType extends { id: string | number }> extends FilterField<
+  TKey,
+  "multiselect",
+  TFilterFieldType,
+  TFilterFieldType["id"][]
+> {
+  options: { label: string; value: TFilterFieldType }[];
   emptyOptionLabel?: string;
-  /** Accessible label for the "from" date input in daterange fields */
+}
+
+export interface DateRangeFilterField<TKey extends string> extends FilterField<
+  TKey,
+  "daterange",
+  { from?: string; to?: string } | undefined,
+  { from?: string; to?: string } | undefined
+> {
   fromLabel?: string;
-  /** Accessible label for the "to" date input in daterange fields */
   toLabel?: string;
 }
 
-export interface GovFilterPanelProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
-  schema: FilterFieldSchema[];
+export interface CustomFilterEntry<TKey extends string, TType extends string> {
+  key: TType;
+  field: (field: FilterField<TKey, TType, any, any>, value: any, onChange: (val: any) => void) => React.ReactNode;
+}
+
+export interface GovFilterPanelProps<TKey extends string = string, TType extends GovFilterFieldType | string = GovFilterFieldType> extends Omit<
+  React.HTMLAttributes<HTMLDivElement>,
+  "onChange"
+> {
+  schema: FilterField<TKey, TType, unknown, unknown>[];
   value: Record<string, unknown>;
+  customFilterFields?: CustomFilterEntry<TKey, TType>[];
   onChange: (filters: Record<string, unknown>) => void;
-  /** Heading rendered above the filter fields; omit to render no heading */
   heading?: React.ReactNode;
   collapsible?: boolean;
 }

@@ -1,2 +1,12 @@
-export { GovFilterPanel, GovFilterPanel as default } from './GovFilterPanel'
-export type { GovFilterPanelProps, FilterFieldSchema } from './GovFilterPanel.types'
+export { GovFilterPanel, GovFilterPanel as default, customFilter } from "./GovFilterPanel";
+export type {
+  FilterFieldProps,
+  GovFilterFieldType,
+  FilterField,
+  TextFilterField,
+  SelectFilterField,
+  MultiSelectFilterField,
+  DateRangeFilterField,
+  CustomFilterEntry,
+  GovFilterPanelProps,
+} from "./GovFilterPanel.types";

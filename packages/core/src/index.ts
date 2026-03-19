@@ -57,8 +57,18 @@ export type { GovSearchBarProps } from "./components/GovSearchBar";
 export { GovFilterChip } from "./components/GovFilterChip";
 export type { GovFilterChipProps } from "./components/GovFilterChip";
 
-export { GovFilterPanel } from "./components/GovFilterPanel";
-export type { GovFilterPanelProps, FilterFieldSchema } from "./components/GovFilterPanel";
+export { customFilter, GovFilterPanel } from "./components/GovFilterPanel";
+export type {
+  GovFilterPanelProps,
+  GovFilterFieldType,
+  FilterField,
+  CustomFilterEntry,
+  FilterFieldProps,
+  TextFilterField,
+  SelectFilterField,
+  MultiSelectFilterField,
+  DateRangeFilterField,
+} from "./components/GovFilterPanel";
 
 export { GovDataTable } from "./components/GovDataTable";
 export type { GovDataTableProps, GovColumnDef } from "./components/GovDataTable";
