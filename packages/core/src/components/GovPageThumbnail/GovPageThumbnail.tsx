@@ -8,6 +8,7 @@ export function GovPageThumbnail({
   selected = false,
   width = 80,
   height = 113,
+  alt,
   className,
   ...rest
 }: GovPageThumbnailProps) {
@@ -22,7 +23,7 @@ export function GovPageThumbnail({
       ) : (
         <img
           src={src}
-          alt={pageNumber ? `Seite ${pageNumber}` : 'Dokumentseite'}
+          alt={alt ?? ''}
           className="gov-page-thumbnail__img"
           loading="lazy"
         />

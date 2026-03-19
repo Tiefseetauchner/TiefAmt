@@ -9,11 +9,13 @@ export function GovPdfViewer({
   pages,
   pdfUrl,
   enableIframe,
-  iframeTitle = 'Dokument',
+  iframeTitle,
   iframeSandbox = 'allow-scripts allow-same-origin',
   initialPage = 1,
   onPageChange,
   downloadUrl,
+  downloadLabel,
+  renderPageCounter,
   height = '100%',
   className,
 }: GovPdfViewerProps) {
@@ -42,8 +44,8 @@ export function GovPdfViewer({
   const toolbar = (
     <div className="gov-pdf-viewer__toolbar">
       <span>
-        {effectiveMode === 'jpeg' && pages
-          ? `Seite ${currentPage} / ${pages.length}`
+        {effectiveMode === 'jpeg' && pages && renderPageCounter
+          ? renderPageCounter(currentPage, pages.length)
           : iframeTitle}
       </span>
       {downloadUrl && (
@@ -54,7 +56,7 @@ export function GovPdfViewer({
           variant="outline-secondary"
           size="sm"
         >
-          ↓ Herunterladen
+          {downloadLabel}
         </Button>
       )}
     </div>
@@ -97,14 +99,12 @@ export function GovPdfViewer({
       )}
       <div className="gov-pdf-viewer__main">
         {toolbar}
-        {pages && pages.length > 0 ? (
+        {pages && pages.length > 0 && (
           <img
             src={pages[currentPage - 1]}
-            alt={`Seite ${currentPage}`}
+            alt=""
             className="gov-pdf-viewer__page-img"
           />
-        ) : (
-          <span style={{ color: 'var(--bs-secondary)' }}>Keine Seiten vorhanden.</span>
         )}
       </div>
     </div>

@@ -21,12 +21,20 @@ export interface GovDataTableProps<T> extends React.HTMLAttributes<HTMLDivElemen
   sortColumn?: string
   sortDirection?: 'asc' | 'desc'
   onSortChange?: (column: string, direction: 'asc' | 'desc') => void
+  /** Called when a row is clicked */
+  onRowClick?: (row: T) => void
   /** Row selection — IDs derived via rowId */
   rowId?: (row: T) => string
   selectedIds?: string[]
   onSelectionChange?: (ids: string[]) => void
+  /** Accessible label for the select-all checkbox */
+  selectAllLabel?: string
+  /** Accessible label for per-row checkboxes */
+  selectRowLabel?: (index: number) => string
   /** Rendered when data is empty */
   renderEmpty?: () => React.ReactNode
+  /** Rendered as the page info area in the pagination bar */
+  renderPageInfo?: (page: number, totalPages: number, totalCount: number) => React.ReactNode
   caption?: string
   bsProps?: Omit<TableProps, 'children'>
 }

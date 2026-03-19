@@ -7,6 +7,7 @@ import type { GovActionBarProps } from "./GovActionBar.types";
 export function GovActionBar<TKey extends string = string>({
   actions,
   onAction,
+  renderConfirm,
   sticky = true,
   leading,
   className,
@@ -15,7 +16,7 @@ export function GovActionBar<TKey extends string = string>({
   const [pendingAction, setPendingAction] = useState<GovActionDef<TKey> | null>(null);
 
   function handleClick(action: GovActionDef<TKey>) {
-    if (action.confirm) {
+    if (action.confirm && renderConfirm) {
       setPendingAction(action);
     } else {
       onAction(action.key);
@@ -27,6 +28,10 @@ export function GovActionBar<TKey extends string = string>({
       onAction(pendingAction.key);
       setPendingAction(null);
     }
+  }
+
+  function cancelAction() {
+    setPendingAction(null);
   }
 
   if (actions.length === 0) return null;
@@ -43,20 +48,11 @@ export function GovActionBar<TKey extends string = string>({
         ))}
       </div>
 
-      <Modal show={pendingAction !== null} onHide={() => setPendingAction(null)} centered size="sm">
-        <Modal.Header closeButton>
-          <Modal.Title style={{ fontSize: "1rem" }}>{pendingAction?.label}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>{pendingAction?.confirm}</Modal.Body>
-        <Modal.Footer>
-          <Button variant="outline-secondary" size="sm" onClick={() => setPendingAction(null)}>
-            Abbrechen
-          </Button>
-          <Button variant={pendingAction?.variant ?? "primary"} size="sm" onClick={confirmAction}>
-            Bestätigen
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      {renderConfirm && (
+        <Modal show={pendingAction !== null} onHide={cancelAction} centered size="sm">
+          {pendingAction && renderConfirm(pendingAction, confirmAction, cancelAction)}
+        </Modal>
+      )}
     </>
   );
 }

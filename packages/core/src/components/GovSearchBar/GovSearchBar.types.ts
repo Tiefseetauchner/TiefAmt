@@ -11,4 +11,8 @@ export interface GovSearchBarProps extends React.HTMLAttributes<HTMLDivElement> 
   chips?: GovFilterChipProps[]
   /** Show loading indicator */
   loading?: boolean
+  /** Accessible label for the loading spinner */
+  loadingLabel?: string
+  /** Accessible label for the clear button */
+  clearLabel?: string
 }

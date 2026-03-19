@@ -3,18 +3,16 @@ import { Alert, Container } from 'react-bootstrap';
 import { gcn } from '../../utils/govClassNames';
 import type { GovBannerProps } from './GovBanner.types';
 
-
 export function GovBanner({
   children,
   dismissible = true,
-  forceShow = false,
+  dismissLabel,
   className,
   bsProps,
   ...rest
 }: GovBannerProps) {
   const [show, setShow] = useState(true);
 
-  if (!forceShow) return null;
   if (!show) return null;
 
   return (
@@ -30,7 +28,7 @@ export function GovBanner({
             <button
               type="button"
               className="ms-auto btn-close"
-              aria-label="Schließen"
+              aria-label={dismissLabel}
               onClick={() => setShow(false)}
             />
           )}

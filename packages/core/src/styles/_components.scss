@@ -274,28 +274,28 @@
   text-transform: uppercase;
   padding: 0.2em 0.5em;
 
-  &--draft {
-    background-color: #c8c8c8;
-    color: #1a1a1a;
-  }
-  &--submitted {
-    background-color: #01579b;
-    color: #fff;
-  }
-  &--under-review {
-    background-color: #e65100;
-    color: #fff;
-  }
-  &--approved {
+  &--success {
     background-color: #2e7d32;
     color: #fff;
   }
-  &--rejected {
+  &--warning {
+    background-color: #e65100;
+    color: #fff;
+  }
+  &--danger {
     background-color: #b71c1c;
     color: #fff;
   }
-  &--returned {
+  &--neutral {
     background-color: #5a6a8a;
+    color: #fff;
+  }
+  &--subtle {
+    background-color: #c8c8c8;
+    color: #1a1a1a;
+  }
+  &--info {
+    background-color: #01579b;
     color: #fff;
   }
 
@@ -606,6 +606,10 @@
 
   tr.gov-data-table__row--selected {
     background-color: rgba(26, 43, 94, 0.06) !important;
+  }
+
+  tr.gov-data-table__row--clickable {
+    cursor: pointer;
   }
 }
 

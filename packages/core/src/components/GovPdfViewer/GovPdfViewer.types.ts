@@ -1,3 +1,5 @@
+import type React from 'react'
+
 export type GovPdfViewerMode = 'jpeg' | 'iframe'
 
 export interface GovPdfViewerProps {
@@ -20,6 +22,10 @@ export interface GovPdfViewerProps {
   onPageChange?: (page: number) => void
   /** Renders a download button when provided (both modes) */
   downloadUrl?: string
+  /** Label for the download button */
+  downloadLabel?: React.ReactNode
+  /** Renders the page counter area in the toolbar (jpeg mode) */
+  renderPageCounter?: (current: number, total: number) => React.ReactNode
   /** iframe mode: container height */
   height?: string
   className?: string

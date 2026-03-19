@@ -17,9 +17,6 @@ export { resolveGovActions } from "./types/workflow";
 export type { GovActionDef, GovWorkflowDef, WorkflowStep } from "./types/workflow";
 
 // ── Foundation components ─────────────────────────────────────────────────────
-export { GovHeader } from "./components/GovHeader";
-export type { GovHeaderProps } from "./components/GovHeader";
-
 export { GovBanner } from "./components/GovBanner";
 export type { GovBannerProps } from "./components/GovBanner";
 
@@ -33,16 +30,15 @@ export { GovAlert } from "./components/GovAlert";
 export type { GovAlertProps, GovAlertVariant } from "./components/GovAlert";
 
 export { GovBadge } from "./components/GovBadge";
-export type { GovBadgeProps, GovBadgeVariant } from "./components/GovBadge";
-
-export { GovFooter } from "./components/GovFooter";
-export type { GovFooterProps } from "./components/GovFooter";
+export type { GovBadgeProps } from "./components/GovBadge";
 
 export { GovNav } from "./components/GovNav";
 export type { GovNavProps, GovNavSection, GovNavItem } from "./components/GovNav";
 
 export { GovSidebar } from "./components/GovSidebar";
 export type { GovSidebarProps } from "./components/GovSidebar";
+
+export type { GovBadgeVariant } from "./types/GovBadgeVariant";
 
 // ── DMS — workflow & state ────────────────────────────────────────────────────
 export { GovStatusBadge } from "./components/GovStatusBadge";
@@ -78,3 +74,4 @@ export { GovPdfViewer } from "./components/GovPdfViewer";
 export type { GovPdfViewerProps, GovPdfViewerMode } from "./components/GovPdfViewer";
 
 export { GovDocumentDrawer } from "./components/GovDocumentDrawer";
+export type { GovDocumentDrawerProps } from "./components/GovDocumentDrawer";

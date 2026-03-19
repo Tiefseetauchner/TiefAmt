@@ -4,12 +4,12 @@
  * the action fires. Absence (or empty string) means fire immediately.
  */
 export interface GovActionDef<TKey extends string = string> {
-  key: TKey
-  label: string
+  key: TKey;
+  label: string;
   /** Bootstrap button variant. Defaults to 'secondary'. */
-  variant?: string
-  /** Confirmation prompt. Dialog is shown iff this is defined and non-empty. */
-  confirm?: string
+  variant?: string;
+  /** If true, a confirmation step is required before the action fires. */
+  confirm?: string;
 }
 
 /**
@@ -29,39 +29,33 @@ export interface GovActionDef<TKey extends string = string> {
  *   ],
  * }
  */
-export interface GovWorkflowDef<
-  TState extends string = string,
-  TKey extends string = string,
-> {
-  transitions: Record<TState, TKey[]>
-  actions: GovActionDef<TKey>[]
+export interface GovWorkflowDef<TState extends string = string, TKey extends string = string> {
+  transitions: Record<TState, TKey[]>;
+  actions: GovActionDef<TKey>[];
 }
 
 /**
  * Returns the subset of action definitions that are valid for `currentState`.
  * Order follows the transition array, not the actions array.
  */
-export function resolveGovActions<
-  TState extends string,
-  TKey extends string,
->(
+export function resolveGovActions<TState extends string, TKey extends string>(
   workflow: GovWorkflowDef<TState, TKey>,
   currentState: TState,
 ): GovActionDef<TKey>[] {
-  const keys = workflow.transitions[currentState] ?? []
-  const defMap = new Map(workflow.actions.map((a) => [a.key, a]))
+  const keys = workflow.transitions[currentState] ?? [];
+  const defMap = new Map(workflow.actions.map((a) => [a.key, a]));
   return keys.flatMap((k) => {
-    const def = defMap.get(k)
-    return def ? [def] : []
-  })
+    const def = defMap.get(k);
+    return def ? [def] : [];
+  });
 }
 
 /** UI shape used by GovWorkflowTracker. Not a business-domain type. */
 export interface WorkflowStep {
-  id: string
-  label: string
-  status: 'pending' | 'active' | 'complete' | 'skipped' | 'returned'
-  assignee?: string
+  id: string;
+  label: string;
+  status: "pending" | "active" | "complete" | "skipped" | "returned";
+  assignee?: string;
   /** ISO date string */
-  completedAt?: string
+  completedAt?: string;
 }

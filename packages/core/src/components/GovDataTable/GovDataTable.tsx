@@ -12,10 +12,14 @@ export function GovDataTable<T>({
   sortColumn,
   sortDirection,
   onSortChange,
+  onRowClick,
   rowId,
   selectedIds,
   onSelectionChange,
+  selectAllLabel,
+  selectRowLabel,
   renderEmpty,
+  renderPageInfo,
   caption,
   className,
   bsProps,
@@ -45,7 +49,6 @@ export function GovDataTable<T>({
 
   const allSelected = selectable && data.length > 0 && data.every((row) => selectedIds?.includes(rowId!(row)));
 
-  // Build page numbers to show
   function pageNumbers(): number[] {
     const pages: number[] = [];
     const delta = 2;
@@ -63,7 +66,7 @@ export function GovDataTable<T>({
           <tr>
             {selectable && (
               <th className="gov-data-table__select-cell">
-                <Form.Check type="checkbox" checked={allSelected} onChange={toggleAll} aria-label="Alle auswählen" />
+                <Form.Check type="checkbox" checked={allSelected} onChange={toggleAll} aria-label={selectAllLabel} />
               </th>
             )}
             {columns.map((col) => (
@@ -88,20 +91,26 @@ export function GovDataTable<T>({
         </thead>
         <tbody>
           {data.length === 0 ? (
-            <tr>
-              <td colSpan={columns.length + (selectable ? 1 : 0)}>
-                <div className="gov-data-table__empty">{renderEmpty ? renderEmpty() : "Keine Einträge gefunden."}</div>
-              </td>
-            </tr>
+            renderEmpty && (
+              <tr>
+                <td colSpan={columns.length + (selectable ? 1 : 0)}>
+                  <div className="gov-data-table__empty">{renderEmpty()}</div>
+                </td>
+              </tr>
+            )
           ) : (
             data.map((row, i) => {
               const id = rowId ? rowId(row) : String(i);
               const isSelected = selectedIds?.includes(id) ?? false;
               return (
-                <tr key={id} className={gcn(isSelected && "gov-data-table__row--selected")}>
+                <tr
+                  key={id}
+                  className={gcn(isSelected && "gov-data-table__row--selected", onRowClick && "gov-data-table__row--clickable")}
+                  onClick={onRowClick ? () => onRowClick(row) : undefined}
+                >
                   {selectable && (
                     <td className="gov-data-table__select-cell">
-                      <Form.Check type="checkbox" checked={isSelected} onChange={() => toggleRow(id)} aria-label={`Zeile ${i + 1} auswählen`} />
+                      <Form.Check type="checkbox" checked={isSelected} onChange={() => toggleRow(id)} aria-label={selectRowLabel?.(i)} />
                     </td>
                   )}
                   {columns.map((col) => (
@@ -116,9 +125,11 @@ export function GovDataTable<T>({
 
       {totalPages > 1 && (
         <div className="gov-data-table__pagination">
-          <span className="gov-data-table__page-info">
-            Seite {page} von {totalPages} ({totalCount} Einträge)
-          </span>
+          {renderPageInfo && (
+            <span className="gov-data-table__page-info">
+              {renderPageInfo(page, totalPages, totalCount)}
+            </span>
+          )}
           <Pagination size="sm" className="mb-0">
             <Pagination.First onClick={() => onPageChange(1)} disabled={page === 1} />
             <Pagination.Prev onClick={() => onPageChange(page - 1)} disabled={page === 1} />

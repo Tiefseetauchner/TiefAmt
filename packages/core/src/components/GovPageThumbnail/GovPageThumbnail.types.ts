@@ -11,4 +11,6 @@ export interface GovPageThumbnailProps extends React.HTMLAttributes<HTMLDivEleme
   selected?: boolean
   width?: number
   height?: number
+  /** Alt text for the page image */
+  alt?: string
 }

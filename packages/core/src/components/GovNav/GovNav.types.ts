@@ -2,14 +2,14 @@ import type React from 'react'
 import type { NavProps } from 'react-bootstrap'
 
 export interface GovNavItem {
-  label: string
+  label: React.ReactNode
   href: string
   active?: boolean
   icon?: React.ReactNode
 }
 
 export interface GovNavSection {
-  heading?: string
+  heading?: React.ReactNode
   items: GovNavItem[]
 }
 

@@ -43,6 +43,12 @@ not explicitly requested do not belong here.
 
 ## Architecture
 
+- **Visibility is the consumer's concern.** The library never decides when a component
+  should or should not render based on environment, feature flags, or application state.
+  If a component should be hidden in development, the consumer wraps it in a condition.
+  The library always renders when mounted.
+
+
 - **Components do not own business logic.** No API calls, no state management, no workflow
   transitions inside components. Components render state and fire callbacks — nothing else.
 

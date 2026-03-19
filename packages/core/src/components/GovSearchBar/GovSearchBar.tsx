@@ -7,10 +7,12 @@ import type { GovSearchBarProps } from './GovSearchBar.types'
 export function GovSearchBar({
   value = '',
   onSearch,
-  placeholder = 'Suchen…',
+  placeholder,
   debounce = 300,
   chips,
   loading = false,
+  loadingLabel,
+  clearLabel,
   className,
   ...rest
 }: GovSearchBarProps) {
@@ -49,7 +51,7 @@ export function GovSearchBar({
             animation="border"
             size="sm"
             style={{ position: 'absolute', right: '0.625rem' }}
-            aria-label="Wird geladen"
+            aria-label={loadingLabel}
           />
         )}
         {!loading && local && (
@@ -57,7 +59,7 @@ export function GovSearchBar({
             type="button"
             className="btn-close"
             style={{ position: 'absolute', right: '0.625rem', fontSize: '0.625rem' }}
-            aria-label="Suche löschen"
+            aria-label={clearLabel}
             onClick={handleClear}
           />
         )}
