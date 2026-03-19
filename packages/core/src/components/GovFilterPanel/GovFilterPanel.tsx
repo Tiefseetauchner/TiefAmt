@@ -31,7 +31,9 @@ function FilterField({
           value={(value as string) ?? ''}
           onChange={(e) => onChange(e.target.value)}
         >
-          <option value="">— Alle —</option>
+          {field.emptyOptionLabel !== undefined && (
+            <option value="">{field.emptyOptionLabel}</option>
+          )}
           {field.options?.map((opt) => (
             <option key={opt.value} value={opt.value}>{opt.label}</option>
           ))}
@@ -72,14 +74,14 @@ function FilterField({
             size="sm"
             value={range.from ?? ''}
             onChange={(e) => onChange({ ...range, from: e.target.value })}
-            aria-label={`${field.label} von`}
+            aria-label={field.fromLabel}
           />
           <Form.Control
             type="date"
             size="sm"
             value={range.to ?? ''}
             onChange={(e) => onChange({ ...range, to: e.target.value })}
-            aria-label={`${field.label} bis`}
+            aria-label={field.toLabel}
           />
         </div>
       )
@@ -91,6 +93,7 @@ export function GovFilterPanel({
   schema,
   value,
   onChange,
+  heading,
   collapsible = false,
   className,
   ...rest
@@ -103,19 +106,21 @@ export function GovFilterPanel({
 
   return (
     <div className={gcn('gov-filter-panel', className)} {...rest}>
-      <div className="gov-filter-panel__heading">
-        Filter
-        {collapsible && (
-          <button
-            type="button"
-            className="gov-filter-panel__toggle"
-            onClick={() => setCollapsed((c) => !c)}
-            aria-expanded={!collapsed}
-          >
-            {collapsed ? '▼' : '▲'}
-          </button>
-        )}
-      </div>
+      {(heading !== undefined || collapsible) && (
+        <div className="gov-filter-panel__heading">
+          {heading}
+          {collapsible && (
+            <button
+              type="button"
+              className="gov-filter-panel__toggle"
+              onClick={() => setCollapsed((c) => !c)}
+              aria-expanded={!collapsed}
+            >
+              {collapsed ? '▼' : '▲'}
+            </button>
+          )}
+        </div>
+      )}
 
       {!collapsed && schema.map((field) => (
         <div key={field.key} className="gov-filter-panel__group">
